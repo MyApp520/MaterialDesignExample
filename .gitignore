@@ -8,3 +8,4 @@ app/build
 commonlib/build
 /captures
 .externalNativeBuild
+commonlib/libs/
