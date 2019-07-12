@@ -449,7 +449,7 @@ public class MPChartUtils {
         pieDataSet.setValueLinePart1OffsetPercentage(70f);
         //当值显示在界面外面的时候是否允许改变折线的长度
         pieDataSet.setValueLineVariableLength(true);
-        // 当值位置为外边线时，设置线的宽度
+        // 当值位置为外边线时，设置线的宽度dp
         pieDataSet.setValueLineWidth(1f);
         // 当值位置为外边线时，表示线的颜色。
         pieDataSet.setValueLineColor(ContextCompat.getColor(pieChart.getContext(), R.color.backgroup));

@@ -65,38 +65,42 @@ public class MPAndroidChartActivity extends BaseActivity {
         colors.add(Color.rgb(114, 188, 223));
         colors.add(Color.rgb(255, 123, 124));
         colors.add(Color.rgb(57, 135, 200));
-        colors.add(Color.rgb(157, 235, 112));
-        colors.add(Color.rgb(77, 15, 100));
-        colors.add(Color.rgb(105, 75, 95));
-        colors.add(Color.rgb(214, 188, 123));
-        colors.add(Color.rgb(155, 223, 224));
-        colors.add(Color.rgb(157, 105, 100));
-        colors.add(Color.rgb(117, 135, 212));
-        colors.add(Color.rgb(177, 165, 200));
-        colors.add(Color.rgb(25, 13, 222));
-        colors.add(Color.rgb(188, 235, 20));
-        colors.add(Color.rgb(100, 235, 12));
-        colors.add(Color.rgb(207, 215, 90));
+//        colors.add(Color.rgb(157, 235, 112));
+//        colors.add(Color.rgb(77, 15, 100));
+//        colors.add(Color.rgb(105, 75, 95));
+//        colors.add(Color.rgb(21, 188, 223));
+//        colors.add(Color.rgb(211, 88, 193));
+//        colors.add(Color.rgb(112, 208, 23));
+//        colors.add(Color.rgb(155, 223, 224));
+//        colors.add(Color.rgb(157, 105, 100));
+//        colors.add(Color.rgb(117, 135, 212));
+//        colors.add(Color.rgb(177, 165, 200));
+//        colors.add(Color.rgb(25, 13, 222));
+//        colors.add(Color.rgb(188, 235, 20));
+//        colors.add(Color.rgb(100, 235, 12));
+//        colors.add(Color.rgb(207, 215, 90));
 
         // TODO: 2019/6/14 将一个饼形图分成yValues.size()个部分， 每个部分所占百分比分别为：12:16:33:39
         // PieEntry第一个参数：表示该部分所占百分比；第二个参数：该部分在饼图中要显示的文字内容(也就是饼图每个部分的文本标签)
         List<PieEntry> yValues = new ArrayList<>();  //yVals用来表示封装每个饼块的实际数据
-        yValues.add(new PieEntry(5, "小五"));
-        yValues.add(new PieEntry(7, "七七"));
-        yValues.add(new PieEntry(2.5f, "二五"));
-        yValues.add(new PieEntry(10, "双十"));
-        yValues.add(new PieEntry(11, "单端"));
-        yValues.add(new PieEntry(11.5f, "在线率"));
-        yValues.add(new PieEntry(8f, "巴士"));
-        yValues.add(new PieEntry(5f, "舞"));
-        yValues.add(new PieEntry(7f, "器"));
+//        yValues.add(new PieEntry(5, "小五"));
+//        yValues.add(new PieEntry(7, "七七"));
+//        yValues.add(new PieEntry(2.5f, "二五"));
+//        yValues.add(new PieEntry(10, "双十"));
+//        yValues.add(new PieEntry(11, "单端"));
+//        yValues.add(new PieEntry(11.5f, "在线率"));
+//        yValues.add(new PieEntry(8f, "巴士"));
+//        yValues.add(new PieEntry(5f, "舞"));
+//        yValues.add(new PieEntry(0.1f, "零点1"));
+//        yValues.add(new PieEntry(0f, "零"));
+        yValues.add(new PieEntry(777f, "器"));
         yValues.add(new PieEntry(0.3f, "离线"));
         yValues.add(new PieEntry(0.2f, "完好"));
-        yValues.add(new PieEntry(12f, "师部"));
-        yValues.add(new PieEntry(14f, "要塞"));
-        yValues.add(new PieEntry(6f, "陆军"));
-        yValues.add(new PieEntry(0.2f, "在线2"));
-        yValues.add(new PieEntry(0.3f, "离线2"));
+        yValues.add(new PieEntry(812f, "师部"));
+//        yValues.add(new PieEntry(14f, "要塞"));
+//        yValues.add(new PieEntry(6f, "陆军"));
+//        yValues.add(new PieEntry(0.2f, "在线2"));
+//        yValues.add(new PieEntry(0.3f, "离线2"));
 
         MPChartUtils.initPieChart(pieChart, getCenterText(), R.color.backgroup);
         pieChart.setData(MPChartUtils.getPieData(pieChart, colors, yValues));
