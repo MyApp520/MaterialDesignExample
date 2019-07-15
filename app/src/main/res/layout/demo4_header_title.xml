@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/rl_normal_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/transparent">
+
+        <ImageView
+            android:id="@+id/iv_title_back_normal"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/translucent_circle_shape"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:src="@mipmap/shop_icon_back_white" />
+
+        <ImageView
+            android:id="@+id/iv_img_normal"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/translucent_circle_shape"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:src="@mipmap/shop_icon_more_white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_select_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_below="@+id/rl_normal_title_bar"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_title_back_select"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingBottom="14dp"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:paddingTop="14dp"
+            android:src="@mipmap/shop_icon_back_gray" />
+
+
+        <TextView
+            android:id="@+id/tv_title_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="我是标题"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:id="@+id/iv_img_select"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:paddingEnd="8dp"
+            android:paddingStart="12dp"
+            android:src="@mipmap/shop_icon_more_gray" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

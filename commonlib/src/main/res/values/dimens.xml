@@ -7,6 +7,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="common_pie_chart_width">212dp</dimen>
+    <dimen name="common_pie_chart_height">212dp</dimen>
 
 
     <!--BottomNavigationView 不想显示文字，只放图标时，设置字体大小为0sp即可-->

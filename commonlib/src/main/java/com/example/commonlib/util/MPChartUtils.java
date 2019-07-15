@@ -2,15 +2,20 @@ package com.example.commonlib.util;
 
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 
 import com.example.commonlib.R;
+import com.example.commonlib.mpandroidchart.LineChartMarkView;
 import com.example.commonlib.mpandroidchart.PieValueFormatter;
 import com.example.commonlib.mpandroidchart.view.FixPieChart;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -19,7 +24,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -28,7 +32,9 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
@@ -136,10 +142,8 @@ public class MPChartUtils {
         xAxis.setGranularity(1f);
 
         YAxis yAxis = mChart.getAxisLeft();
-        //设置x轴的最大值
-        yAxis.setAxisMaximum(yMax);
-        // 设置y轴的最大值
-        yAxis.setAxisMinimum(yMin);
+        // 设置y轴的最小值
+        yAxis.setAxisMinimum(yMin); //设置y轴的最大值 setAxisMaximum 不设置就自动适配
         // 不显示y轴
         yAxis.setDrawAxisLine(false);
         // 设置y轴数据的位置
@@ -180,94 +184,18 @@ public class MPChartUtils {
     }
 
     /**
-     * 初始化数据
-     *
-     * @param chart
-     * @param lineDatas
-     */
-    public static void initData(CombinedChart chart, LineData... lineDatas) {
-        CombinedData combinedData = new CombinedData();
-        for (LineData lineData : lineDatas) {
-            combinedData.setData(lineData);
-        }
-        chart.setData(combinedData);
-        chart.invalidate();
-    }
-
-    /**
-     * 获取LineDataSet
-     *
-     * @param entries
-     * @param label
-     * @param textColor
-     * @param lineColor
-     * @return
-     */
-    public static LineDataSet getLineData(List<Entry> entries, String label, int textColor, int lineColor, boolean isFill) {
-        LineDataSet dataSet = new LineDataSet(entries, label);
-        // 设置曲线的颜色
-        dataSet.setColor(lineColor);
-        //数值文字颜色
-        dataSet.setValueTextColor(textColor);
-        // 模式为贝塞尔曲线
-        dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
-        // 是否绘制数据值
-        dataSet.setDrawValues(false);
-        // 是否绘制圆点
-        dataSet.setDrawCircles(true);
-        dataSet.setDrawCircleHole(false);
-        // 这里有一个坑，当我们想隐藏掉高亮线的时候，MarkerView 跟着不见了
-        // 因此只有将它设置成透明色
-        dataSet.setHighlightEnabled(true);// 隐藏点击时候的高亮线
-        //设置高亮线为透明色
-        dataSet.setHighLightColor(Color.TRANSPARENT);
-
-        if (isFill) {
-            //是否设置填充曲线到x轴之间的区域
-            dataSet.setDrawFilled(true);
-            // 填充颜色
-            dataSet.setFillColor(lineColor);
-        }
-        //设置圆点的颜色
-        dataSet.setCircleColor(lineColor);
-        // 设置圆点半径
-        dataSet.setCircleRadius(3.5f);
-        // 设置线的宽度
-        dataSet.setLineWidth(1f);
-        return dataSet;
-    }
-
-    /**
-     * 获取barDataSet
-     *
-     * @param entries
-     * @param label
-     * @param textColor
-     * @param lineColor
-     * @return
-     */
-    public static BarDataSet getBarDataSet(List<BarEntry> entries, String label, int textColor, int lineColor) {
-        BarDataSet dataSet = new BarDataSet(entries, label);
-        dataSet.setBarBorderWidth(5);
-        dataSet.setBarShadowColor(lineColor);
-        dataSet.setValueTextColor(textColor);
-        dataSet.setDrawValues(false);
-        return dataSet;
-    }
-
-    /**
      * 初始化柱状图基础设置
      *
      * @param barChart
      * @param xLabels
      */
-    public static void initBarChart(BarChart barChart, final List<String> xLabels) {
+    public static void initBarChart(BarChart barChart, final List<String> xLabels, boolean isCanScroll) {
         barChart.getDescription().setEnabled(false);//设置不显示图形描述信息
         barChart.setPinchZoom(true);//设置按比例放缩柱状图
         barChart.setScaleEnabled(false);
-        barChart.setDragEnabled(false);
+        barChart.setDragEnabled(isCanScroll);
         // 设置是否可触摸
-        barChart.setTouchEnabled(false);
+        barChart.setTouchEnabled(isCanScroll);
         barChart.setNoDataText("咋的了，没数据啊"); // 没有数据时的提示文案
 
         //x坐标轴设置
@@ -291,45 +219,52 @@ public class MPChartUtils {
         xAxis.setLabelCount(xLabels.size());//设置标签显示的个数
 
         //y轴设置
-        YAxis leftAxis = barChart.getAxisLeft();//获取左侧y轴
-        leftAxis.setEnabled(true);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);//设置y轴标签显示在外侧
-        leftAxis.setDrawLabels(true);//是否绘制y轴标签
-        leftAxis.setDrawAxisLine(false);//是否绘制坐标轴轴线
-        leftAxis.setDrawGridLines(true);//是否绘制格网线
-        leftAxis.setGridColor(ContextCompat.getColor(barChart.getContext(), R.color.chart_grid_line_color));//网格线颜色
-        leftAxis.setLabelCount(5);//Y轴分成几个层级
-        leftAxis.setAxisMaximum(2000f);
-        leftAxis.setAxisMinimum(0f);//设置Y轴最小值
-        leftAxis.setAxisLineWidth(1.0f);//设置Y轴轴线宽度
-        leftAxis.setAxisLineColor(Color.parseColor("#e56ebc"));
-        leftAxis.setTextColor(barChart.getResources().getColor(R.color.char_text_color));
-        leftAxis.setValueFormatter(new IAxisValueFormatter() {
+        YAxis leftYAxis = barChart.getAxisLeft();//获取左侧y轴
+        leftYAxis.setEnabled(true);
+        leftYAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);//设置y轴标签显示在外侧
+        leftYAxis.setDrawLabels(true);//是否绘制y轴标签
+        leftYAxis.setDrawAxisLine(false);//是否绘制坐标轴轴线
+        leftYAxis.setDrawGridLines(true);//是否绘制格网线
+        leftYAxis.setLabelCount(6);//Y轴分成几个层级
+        leftYAxis.setAxisMinimum(0f);//设置Y轴最小值
+        leftYAxis.setAxisLineWidth(1.0f);//设置Y轴轴线宽度
+        leftYAxis.setAxisLineColor(Color.parseColor("#e56ebc"));
+        leftYAxis.setTextColor(barChart.getResources().getColor(R.color.char_text_color));
+        leftYAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
                 return String.valueOf((int) value);//Y轴标签值
             }
         });
+        //网格线颜色
+        leftYAxis.setGridColor(ContextCompat.getColor(barChart.getContext(), R.color.chart_grid_line_color));
+        //设置网格线为虚线效果
+        leftYAxis.enableGridDashedLine(10f, 10f, 0f);
+        //是否绘制0所在的网格线
+        leftYAxis.setDrawZeroLine(false);
+        //设置绘制零线宽度
+        leftYAxis.setZeroLineWidth(0.5f);
+        //绘制零线颜色
+        leftYAxis.setZeroLineColor(Color.parseColor("#c0c0c0"));
 
         barChart.getAxisRight().setEnabled(false);//禁用右侧y轴
         barChart.getLegend().setEnabled(false);//是否显示图例示意图
 
-//        Matrix matrix = new Matrix();
-//        // 根据数据量来确定 x轴缩放大倍
-//        if (xLabels.size() <= 10) {
-//            matrix.postScale(1.0f, 1.0f);
-//        } else if (xLabels.size() <= 15) {
-//            matrix.postScale(1.5f, 1.0f);
-//        } else if (xLabels.size() <= 20) {
-//            matrix.postScale(2.0f, 1.0f);
-//        } else {
-//            matrix.postScale(3.0f, 1.0f);
-//        }
-//        barChart.getViewPortHandler().refresh(matrix, barChart, false);
-//        barChart.setExtraBottomOffset(10);//距视图窗口底部的偏移，类似与paddingbottom
-//        barChart.setExtraTopOffset(30);//距视图窗口顶部的偏移，类似与paddingtop
-//        barChart.setFitBars(true);//使两侧的柱图完全显示
-//        barChart.animateX(1500);//数据显示动画，从左往右依次显示
+        if (isCanScroll) {
+            Matrix matrix = new Matrix();
+            // 根据数据量来确定 x轴缩放大倍
+            if (xLabels.size() <= 10) {
+                matrix.postScale(1.0f, 1.0f);
+            } else if (xLabels.size() <= 15) {
+                matrix.postScale(1.5f, 1.0f);
+            } else if (xLabels.size() <= 20) {
+                matrix.postScale(2.0f, 1.0f);
+            } else {
+                matrix.postScale(3.0f, 1.0f);
+            }
+            barChart.getViewPortHandler().refresh(matrix, barChart, false);
+            barChart.animateX(1500);//数据显示动画，从左往右依次显示
+        }
     }
 
     /**
@@ -367,12 +302,67 @@ public class MPChartUtils {
     }
 
     /**
-     * 初始化饼状图基础设置
+     * 初始化饼状图基础设置 PieChart
+     * @param pieChart
+     */
+    public static void initPieChart(PieChart pieChart, String descriptionText) {
+        pieChart.setLogEnabled(AppDebugUtil.isDebug());//打开图表的日志
+
+        pieChart.setDrawCenterText(false);  //饼状图中间文字不显示
+        Description description = pieChart.getDescription();
+        description.setPosition(Utils.convertDpToPixel(76f), Utils.convertDpToPixel(28f));
+        description.setText(descriptionText);//图形描述信息
+        description.setTextColor(ContextCompat.getColor(pieChart.getContext(), R.color.black));
+        description.setTextSize(16f);
+        description.setTextAlign(Paint.Align.CENTER);// 对齐方式：居中对齐
+        description.setEnabled(!TextUtils.isEmpty(descriptionText));//是否显示图形描述信息
+        pieChart.setRotationAngle(-90); // 设置饼图从哪个角度开始绘制
+        pieChart.setUsePercentValues(false);  //显示成百分比
+        //设置部分手势事件
+        pieChart.setTouchEnabled(false);// 设置是否可触摸，饼图要想响应手势事件，必须设为true
+        pieChart.setRotationEnabled(false); // 是否可以手动旋转
+        pieChart.setHighlightPerTapEnabled(false);//设置为false之后，点击每一块不能向外突出
+
+        //设置显示饼图还是显示圆环
+        pieChart.setDrawHoleEnabled(true); //false:设置实心；   true:关闭实心，饼图由圆环和中心孔两部分组成
+        pieChart.setHoleRadius(88f);//当饼图以圆环显示时，设置中心孔的半径与饼图半径的百分比
+        //默认情况下，会绘制一个半透明圆覆盖在饼图上，这里设置这个圆的半径与饼图半径的百分比，这个圆的背景色默认是半透明的
+        pieChart.setTransparentCircleRadius(1f);//如果不想显示这个透明圆，半径设置成一个很小的值（看源码，好像是小于setHoleRadius即可）
+        pieChart.setTransparentCircleColor(ContextCompat.getColor(pieChart.getContext(), R.color.white));//设置透明圆的背景色
+        pieChart.setTransparentCircleAlpha(122);//设置透明圆背景色的透明度（取值范围0-255）
+
+        //设置饼图上面的文字，也就是PieEntry的label是否显示
+        pieChart.setDrawEntryLabels(false);
+        //设置饼图每一块的说明的字体颜色
+        pieChart.setEntryLabelColor(ContextCompat.getColor(pieChart.getContext(), R.color.backgroup));
+        //设置饼图每一块说明的字体大小
+        pieChart.setEntryLabelTextSize(14f);
+        //设置字体，加粗Typeface.DEFAULT_BOLD
+        pieChart.setEntryLabelTypeface(Typeface.DEFAULT);
+
+        //图例示意图相关设置
+        Legend legend = pieChart.getLegend();
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置竖直方向显示位置,legend.setYOffset设置偏移量
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//设置水平方向显示位置，legend.setXOffset设置偏移量
+        legend.setForm(Legend.LegendForm.SQUARE);  //设置图例示意图形状，默认是方形
+        legend.setXEntrySpace(2f);//设置距离饼图的距离，防止与饼图重合
+        legend.setYEntrySpace(0f);
+        legend.setWordWrapEnabled(true);//设置允许示意图的内容换行，否则数据过多的时候会超出屏幕范围
+        legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//内容排列方向
+        legend.setDrawInside(false);//可自行设置为true后查看效果
+        legend.setEnabled(true);//是否显示图例示意图
+
+        pieChart.setExtraOffsets(0, 18f, 0, 8f);//注意：查源码可知，此处8f指的是8dp，而不是8个像素
+    }
+
+    /**
+     * 初始化饼状图基础设置 FixPieChart
      * @param pieChart
      * @param centerText
      * @param centerTextColor
      */
-    public static void initPieChart(FixPieChart pieChart, CharSequence centerText, int centerTextColor) {
+    public static void initFixPieChart(FixPieChart pieChart, CharSequence centerText, int centerTextColor) {
         pieChart.setLogEnabled(AppDebugUtil.isDebug());//打开图表的日志
 
         pieChart.setDrawCenterText(false);  //饼状图中间文字不显示
@@ -395,7 +385,7 @@ public class MPChartUtils {
         //设置显示饼图还是显示圆环
         pieChart.setDrawHoleEnabled(true); //false:设置实心；   true:关闭实心，饼图由圆环和中心孔两部分组成
         pieChart.setHoleRadius(56f);//当饼图以圆环显示时，设置中心孔的半径与饼图半径的百分比
-        //默认情况下，会绘制一个透明圆覆盖在饼图上，这里设置这个圆的半径与饼图半径的百分比，这个圆的背景色默认是半透明的
+        //默认情况下，会绘制一个半透明圆覆盖在饼图上，这里设置这个圆的半径与饼图半径的百分比，这个圆的背景色默认是半透明的
         pieChart.setTransparentCircleRadius(1f);//如果不想显示这个透明圆，半径设置成一个很小的值（看源码，好像是小于setHoleRadius即可）
         pieChart.setTransparentCircleColor(ContextCompat.getColor(pieChart.getContext(), R.color.white));//设置透明圆的背景色
         pieChart.setTransparentCircleAlpha(122);//设置透明圆背景色的透明度（取值范围0-255）
@@ -432,7 +422,7 @@ public class MPChartUtils {
      * @param yValues
      * @return
      */
-    public static PieData getPieData(FixPieChart pieChart, List<Integer> colors, List<PieEntry> yValues) {
+    public static PieData getPieData(FixPieChart pieChart, List<Integer> colors, List<PieEntry> yValues, boolean isDrawValues) {
         // y轴的集合
         PieDataSet pieDataSet = new PieDataSet(yValues, "");//第二个参数：示例图的描述信息，可以通过pieChart.getLegend()关掉
         pieDataSet.setSliceSpace(0f); //设置每个饼状图之间的距离
@@ -440,34 +430,214 @@ public class MPChartUtils {
         pieDataSet.setColors(colors);
         pieDataSet.setSelectionShift(0f); //选中某部分时，这部分图形比其他图形突出的长度
 
-        //这一段代码就是实现加一个横线然后将模块的数据放在外面的效果
-        // 当值位置为外边线时，折线的前半段长度。
-        pieDataSet.setValueLinePart1Length(0.3f);
-        // 当值位置为外边线时，折线的后半段长度。
-        pieDataSet.setValueLinePart2Length(0.4f);
-        // 当ValuePosits为OutsiDice时，饼图显示：折线起始位置偏移占饼图半径大小的百分比；圆环显示：折线起始位置偏移占圆环半径大小的百分比；
-        pieDataSet.setValueLinePart1OffsetPercentage(70f);
-        //当值显示在界面外面的时候是否允许改变折线的长度
-        pieDataSet.setValueLineVariableLength(true);
-        // 当值位置为外边线时，设置线的宽度dp
-        pieDataSet.setValueLineWidth(1f);
-        // 当值位置为外边线时，表示线的颜色。
-        pieDataSet.setValueLineColor(ContextCompat.getColor(pieChart.getContext(), R.color.backgroup));
-        //设置项X值拿出去
-        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-        //设置将Y轴的值拿出去
-        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        if (isDrawValues) {
+            //这一段代码就是实现加一个横线然后将模块的数据放在外面的效果
+            // 当值位置为外边线时，折线的前半段长度。
+            pieDataSet.setValueLinePart1Length(0.3f);
+            // 当值位置为外边线时，折线的后半段长度。
+            pieDataSet.setValueLinePart2Length(0.4f);
+            // 当ValuePosits为OutsiDice时，饼图显示：折线起始位置偏移占饼图半径大小的百分比；圆环显示：折线起始位置偏移占圆环半径大小的百分比；
+            pieDataSet.setValueLinePart1OffsetPercentage(70f);
+            //当值显示在界面外面的时候是否允许改变折线的长度
+            pieDataSet.setValueLineVariableLength(true);
+            // 当值位置为外边线时，设置线的宽度dp
+            pieDataSet.setValueLineWidth(1f);
+            // 当值位置为外边线时，表示线的颜色。
+            pieDataSet.setValueLineColor(ContextCompat.getColor(pieChart.getContext(), R.color.backgroup));
+            //设置项X值拿出去
+            pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+            //设置将Y轴的值拿出去
+            pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        }
 
         PieData pieData = new PieData(pieDataSet);
         // 是否在饼图上显示每个部分的百分比数值，也就是PieEntry中的value值
-        pieData.setDrawValues(true);
-        // 文字的大小
-        pieData.setValueTextSize(10);
-        // 文字的颜色
-        pieData.setValueTextColor(ContextCompat.getColor(pieChart.getContext(), R.color.backgroup));
-        // 字体的样式，加粗DEFAULT_BOLD
-        pieData.setValueTypeface(Typeface.DEFAULT);
-        pieData.setValueFormatter(new PieValueFormatter(true));//格式化显示的数据为%百分比
+        pieData.setDrawValues(isDrawValues);
+        if (isDrawValues) {
+            // 文字的大小
+            pieData.setValueTextSize(10);
+            // 文字的颜色
+            pieData.setValueTextColor(ContextCompat.getColor(pieChart.getContext(), R.color.colorAccent));
+            // 字体的样式，加粗DEFAULT_BOLD
+            pieData.setValueTypeface(Typeface.DEFAULT);
+            pieData.setValueFormatter(new PieValueFormatter(true));//格式化显示的数据为%百分比
+        }
         return pieData;
+    }
+
+    /**
+     * 初始化LineChart
+     * @param lineChart
+     */
+    public static void initLineChart(LineChart lineChart, List<String> xDataList) {
+        /** 开始配置 X轴 **/
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setTextColor(Color.parseColor("#333333"));
+        xAxis.setTextSize(11f);
+        xAxis.setDrawAxisLine(false);//是否绘制轴线
+        xAxis.setDrawGridLines(false);//设置x轴上每个点对应的线
+        xAxis.setDrawLabels(true);//绘制标签  指x轴上的对应数值
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//设置x轴的显示位置
+        xAxis.setGranularity(1f);//禁止放大x轴标签重绘
+        xAxis.setDrawGridLines(false);//是否绘制竖直网格线
+        xAxis.setGridColor(ContextCompat.getColor(lineChart.getContext(), R.color.chart_grid_line_color));//网格线颜色
+//        xAxis.setSpaceMin(0);// 设置数据之间的间距
+        xAxis.setLabelCount(xDataList.size());
+        IndexAxisValueFormatter indexAxisValueFormatter = new IndexAxisValueFormatter(xDataList);
+        xAxis.setValueFormatter(indexAxisValueFormatter);
+        // 设置 MarkerView
+        LineChartMarkView mv = new LineChartMarkView(lineChart.getContext(), indexAxisValueFormatter);
+        mv.setChartView(lineChart);
+        lineChart.setMarker(mv);
+
+        /** 开始配置 Y轴 **/
+        YAxis leftYAxis = lineChart.getAxisLeft();
+        //是否绘制轴线
+        leftYAxis.setDrawAxisLine(false);
+        leftYAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        // 保证Y轴从0开始，不然会上移一点
+        leftYAxis.setAxisMinimum(0f);
+        // s设置字体大小
+        leftYAxis.setTextSize(10f);
+        // 设置Y轴最多显示的数据个数
+        leftYAxis.setLabelCount(6);
+        leftYAxis.setDrawGridLines(true);//是否绘制格水平网格线
+        leftYAxis.setGridColor(ContextCompat.getColor(lineChart.getContext(), R.color.chart_grid_line_color));//网格线颜色
+        //设置网格线为虚线效果
+        leftYAxis.enableGridDashedLine(10f, 10f, 0f);
+        //是否绘制0所在的网格线
+        leftYAxis.setDrawZeroLine(false);
+        //设置绘制零线宽度
+        leftYAxis.setZeroLineWidth(0.5f);
+        //绘制零线颜色
+        leftYAxis.setZeroLineColor(Color.parseColor("#c0c0c0"));
+//        // 设置警戒线
+//        leftYAxis.addLimitLine(ll1);
+
+        /** 开始配置图表 **/
+        lineChart.setDrawBorders(true);// 是否在折线图上添加边框
+        // 曲线描述 -标题
+        Description description = lineChart.getDescription();
+        description.setText("我是Description()");//图形描述信息
+        description.setTextSize(16f);// 标题字体大小
+        description.setTextColor(ContextCompat.getColor(lineChart.getContext(), R.color.backgroup));// 标题字体颜色
+        description.setEnabled(false);//是否显示图形描述信息
+        // 设置是否启动触摸响应
+        lineChart.setTouchEnabled(true);
+        // 是否可以拖拽
+        lineChart.setDragEnabled(true);
+        lineChart.setDragDecelerationFrictionCoef(0.9f);
+        // 是否可以缩放
+        lineChart.setScaleEnabled(true);
+        // 如果禁用，可以在x和y轴上分别进行缩放
+        lineChart.setPinchZoom(false);
+        //设置是否可以通过双击屏幕放大图表。默认是true
+        lineChart.setDoubleTapToZoomEnabled(false);
+//        // 设置背景色
+//        lineChart.setBackgroundColor(ContextCompat.getColor(lineChart.getContext(), R.color.colorAccent));
+        // 如果没有数据的时候，会显示这个
+        lineChart.setNoDataText("暂无数据");
+        // 禁止绘制图表边框的线
+        lineChart.setDrawBorders(false);
+        // 是否显示网格区域的背景色
+        lineChart.setDrawGridBackground(false);
+        // 设置网格区域的背景色
+        lineChart.setGridBackgroundColor(ContextCompat.getColor(lineChart.getContext(), R.color.backgroup));
+//        //设置整个坐标系的上下左右偏移量。根据自己数据哪个地方显示不全，对应调用方法。
+//        lineChart.setExtraOffsets(20,20f,0f,0f);
+
+        //图例示意图相关设置
+        Legend legend = lineChart.getLegend();
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置竖直方向显示位置,legend.setYOffset设置偏移量
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//设置水平方向显示位置，legend.setXOffset设置偏移量
+        legend.setForm(Legend.LegendForm.CIRCLE);  //设置图例示意图形状，默认是方形
+        legend.setXEntrySpace(7f);//设置距离图的距离，防止与图重合
+        legend.setYEntrySpace(5f);
+        legend.setWordWrapEnabled(true);//设置允许示意图的内容换行，否则数据过多的时候会超出屏幕范围
+        legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//内容排列方向
+        legend.setDrawInside(false);//可自行设置为true后查看效果
+        legend.setEnabled(true);//是否显示图例示意图
+
+        // 隐藏右侧Y轴（只在左侧的Y轴显示刻度）
+        lineChart.getAxisLeft().setEnabled(true);
+        lineChart.getAxisRight().setEnabled(false);
+    }
+
+    /**
+     * 曲线赋值与设置
+     *
+     * @param lineChart
+     * @param yDataList y轴数据
+     *
+     * @return LineData
+     */
+    public static LineData getLineData(LineChart lineChart, List<Entry> yDataList, String curveLabel, int lineColor) {
+        // 一个LineDataSet表示一条曲线数据对象
+        // y轴的数据集合
+        LineDataSet lineDataSet = new LineDataSet(yDataList, curveLabel);
+        initLineDataSet(lineChart, lineDataSet, lineColor);
+
+        // y轴的数据
+        LineData lineData = lineChart.getLineData();
+        if (lineData == null) {
+            lineData = new LineData(lineDataSet);
+        } else {
+            lineData.addDataSet(lineDataSet);
+        }
+        return lineData;
+    }
+
+    /**
+     *
+     * @param lineChart
+     * @param lineDataSetList
+     * @return
+     */
+    public static LineData getLineData(LineChart lineChart, List<LineDataSet> lineDataSetList) {
+        LineData lineData = new LineData();
+        // 一个LineDataSet表示一条曲线数据对象
+        for (LineDataSet lineDataSet : lineDataSetList) {
+            lineData.addDataSet(lineDataSet);
+        }
+
+        return lineData;
+    }
+
+    public static LineDataSet initLineDataSet(LineChart lineChart, LineDataSet lineDataSet, int lineColor) {
+        // 坐标轴在左侧
+        lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+        //设置显示曲线CUBIC_BEZIER、折线LINEAR等模式
+        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
+        // 是否显示坐标点的数据
+        lineDataSet.setDrawValues(false);
+        // 是否显示折线上坐标的圆点
+        lineDataSet.setDrawCircles(true);
+        // 折线上坐标圆点是实心还是空心
+        lineDataSet.setDrawCircleHole(false);
+        // 线宽
+        lineDataSet.setLineWidth(2.0f);
+        // 显示折线上坐标圆点大小
+        lineDataSet.setCircleRadius(4.0f);
+        // 折线的颜色
+        lineDataSet.setColor(ContextCompat.getColor(lineChart.getContext(), lineColor));
+        // 折线上坐标点的颜色
+        lineDataSet.setCircleColor(ContextCompat.getColor(lineChart.getContext(), lineColor));
+        // 高亮的线的设置（高亮线：点击折线的某个坐标，会在这个点上显示横纵两条直线）
+        // 这里有一个坑，当我们想隐藏掉高亮线的时候，MarkerView 跟着不见了, 因此只有将setHighLightColor设置成透明色
+        lineDataSet.setHighlightEnabled(true);//false则不显示
+        lineDataSet.setHighLightColor(ContextCompat.getColor(lineChart.getContext(), R.color.transparent));
+        // 设置显示曲线和X轴围成的区域阴影
+        lineDataSet.setDrawFilled(false);
+        lineDataSet.setFillAlpha(65);
+        lineDataSet.setFillColor(ContextCompat.getColor(lineChart.getContext(), R.color.transparent));
+
+        // 设置每条曲线图例标签名
+        // lineDataSet.setLabel("标签");
+        lineDataSet.setValueTextSize(14f);
+        // 曲线弧度（区间0.05f-1f，默认0.2f）
+        lineDataSet.setCubicIntensity(0.2f);
+
+        return lineDataSet;
     }
 }

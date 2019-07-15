@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,161 +7,148 @@
     android:orientation="vertical"
     tools:context="org.smile.mde.ui.activity.mpandroidchart.MPAndroidChartActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:background="@drawable/common_white_corner_shape"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_horizontal_margin">
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bar_chart"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-
-        </com.github.mikephil.charting.charts.BarChart>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:background="@drawable/common_white_corner_shape">
-
-        <com.example.commonlib.mpandroidchart.view.FixPieChart
-            android:id="@+id/pie_chart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true">
-
-        </com.example.commonlib.mpandroidchart.view.FixPieChart>
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center_horizontal"
-        android:visibility="gone" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:background="@drawable/common_white_corner_shape"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp">
+            android:layout_height="280dp"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:background="@drawable/common_white_corner_shape"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="在线总数"
-                android:textColor="#454F63" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/face_collect_line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:text="1388"
-                android:textColor="#78849E" />
+            </com.github.mikephil.charting.charts.LineChart>
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:background="#f4f4f4" />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:background="@drawable/common_white_corner_shape"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="离线总数"
-                android:textColor="#454F63" />
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/scroll_bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:text="612"
-                android:textColor="#78849E" />
+            </com.github.mikephil.charting.charts.BarChart>
         </RelativeLayout>
 
-        <View
+        <com.example.commonlib.view.CommonHorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:background="#f4f4f4" />
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/common_pie_chart_width"
+                    android:layout_height="180dp"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:background="@drawable/common_white_corner_shape">
+
+                    <com.example.commonlib.mpandroidchart.view.FixPieChart
+                        android:id="@+id/alarm_count_pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
+                    </com.example.commonlib.mpandroidchart.view.FixPieChart>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/common_pie_chart_width"
+                    android:layout_height="180dp"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:background="@drawable/common_white_corner_shape">
+
+                    <com.example.commonlib.mpandroidchart.view.FixPieChart
+                        android:id="@+id/key_people_pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
+                    </com.example.commonlib.mpandroidchart.view.FixPieChart>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/common_pie_chart_width"
+                    android:layout_height="180dp"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:background="@drawable/common_white_corner_shape">
+
+                    <com.example.commonlib.mpandroidchart.view.FixPieChart
+                        android:id="@+id/escapee_people_pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
+                    </com.example.commonlib.mpandroidchart.view.FixPieChart>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/common_pie_chart_width"
+                    android:layout_height="180dp"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:background="@drawable/common_white_corner_shape">
+
+                    <com.example.commonlib.mpandroidchart.view.FixPieChart
+                        android:id="@+id/temp_control_people_pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
+                    </com.example.commonlib.mpandroidchart.view.FixPieChart>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </com.example.commonlib.view.CommonHorizontalScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:background="@drawable/common_white_corner_shape"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="完好总数"
-                android:textColor="#454F63" />
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/common_bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:text="1797"
-                android:textColor="#78849E" />
+            </com.github.mikephil.charting.charts.BarChart>
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:background="#f4f4f4" />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp">
+            android:layout_height="180dp"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:background="@drawable/common_white_corner_shape">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="故障总数"
-                android:textColor="#454F63" />
+            <com.example.commonlib.mpandroidchart.view.FixPieChart
+                android:id="@+id/fix_pie_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:text="203"
-                android:textColor="#78849E" />
+            </com.example.commonlib.mpandroidchart.view.FixPieChart>
         </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

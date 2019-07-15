@@ -59,4 +59,16 @@
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@android:color/holo_orange_dark</item>
     </style>
+
+    <!-- CommonEditText 控件 的 属性 -->
+    <declare-styleable name="CommonEditTextStyle">
+        <!-- 输入框 左边 显示 的 图标-->
+        <attr name="leftIconDrawable" format="reference"/>
+        <!-- 删除 按钮 图标 -->
+        <attr name="rightDeleteDrawable" format="reference"/>
+        <!-- 隐藏 按钮 图标 -->
+        <attr name="rightVisibleDrawable" format="reference"/>
+        <!-- 是否 是 密码 输入 框 -->
+        <attr name="editTextIsPassWordType" format="boolean"/>
+    </declare-styleable>
 </resources>

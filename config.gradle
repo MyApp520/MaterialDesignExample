@@ -40,6 +40,7 @@ ext {
             "retrofit-adapter-rxjava"      : "com.squareup.retrofit2:adapter-rxjava:${versions["retrofitSdkversions"]}",
             "retrofit-adapter-rxjava2"     : "com.squareup.retrofit2:adapter-rxjava2:${versions["retrofitSdkversions"]}",
             "okhttp3"                      : "com.squareup.okhttp3:okhttp:3.10.0",
+            "okhttp3-logging"              : "com.squareup.okhttp3:logging-interceptor:3.10.0",
             "okhttp-urlconnection"         : "com.squareup.okhttp:okhttp-urlconnection:2.0.0",
             "glide"                        : "com.github.bumptech.glide:glide:${versions["glideSdkversions"]}",
             "glide-compiler"               : "com.github.bumptech.glide:compiler:${versions["glideSdkversions"]}",

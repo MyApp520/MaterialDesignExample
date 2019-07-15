@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 
 import com.example.commonlib.util.ShowToast;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -28,7 +29,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 public abstract class BaseActivity extends AppCompatActivity implements ISupportActivity {
 
     protected final String TAG = getClass().getSimpleName();
-    private String[] permissionArray = new String[] {
+    private String[] permissionArray = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -54,6 +55,8 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        //该activity界面禁止截屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         // dagger-android注入
         if (isUseDagger()) {
             AndroidInjection.inject(this);
@@ -66,8 +69,11 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
     }
 
     protected abstract int bindLayout();
+
     protected abstract void initView();
+
     protected abstract void initData();
+
     protected abstract boolean isUseDagger();
 
     @Override
@@ -149,7 +155,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
     /****************************************以下为可选方法(Optional methods)******************************************************/
 
     // 选择性拓展其他方法
-
     public void loadRootFragment(int containerId, @NonNull ISupportFragment toFragment) {
         mDelegate.loadRootFragment(containerId, toFragment);
     }

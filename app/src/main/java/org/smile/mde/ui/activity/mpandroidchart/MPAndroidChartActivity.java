@@ -7,30 +7,43 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.example.commonlib.base.BaseActivity;
 import com.example.commonlib.mpandroidchart.view.FixPieChart;
 import com.example.commonlib.util.MPChartUtils;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
 import org.smile.mde.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 
 public class MPAndroidChartActivity extends BaseActivity {
 
-    @BindView(R.id.bar_chart)
-    BarChart barChart;
-    @BindView(R.id.pie_chart)
-    FixPieChart pieChart;
-    @BindView(R.id.tv_name)
-    TextView tv_name;
+    @BindView(R.id.common_bar_chart)
+    BarChart commonBarChart;
+    @BindView(R.id.fix_pie_chart)
+    FixPieChart fixPieChart;
+    @BindView(R.id.face_collect_line_chart)
+    LineChart faceCollectLineChart;
+    @BindView(R.id.scroll_bar_chart)
+    BarChart scrollBarChart;
+    @BindView(R.id.alarm_count_pie_chart)
+    FixPieChart alarmCountPieChart;
+    @BindView(R.id.key_people_pie_chart)
+    FixPieChart keyPeoplePieChart;
+    @BindView(R.id.escapee_people_pie_chart)
+    FixPieChart escapeePeoplePieChart;
+    @BindView(R.id.temp_control_people_pie_chart)
+    FixPieChart tempControlPeoplePieChart;
 
     @Override
     protected int bindLayout() {
@@ -49,6 +62,8 @@ public class MPAndroidChartActivity extends BaseActivity {
     protected void initData() {
         showBarChart();
         showPieChart();
+        showLineChart();
+        showScrollBarChart();
     }
 
     @Override
@@ -93,20 +108,51 @@ public class MPAndroidChartActivity extends BaseActivity {
 //        yValues.add(new PieEntry(5f, "舞"));
 //        yValues.add(new PieEntry(0.1f, "零点1"));
 //        yValues.add(new PieEntry(0f, "零"));
-        yValues.add(new PieEntry(777f, "器"));
-        yValues.add(new PieEntry(0.3f, "离线"));
-        yValues.add(new PieEntry(0.2f, "完好"));
-        yValues.add(new PieEntry(812f, "师部"));
+        yValues.add(new PieEntry(777f, "总人数85人"));
+        yValues.add(new PieEntry(7f, "已抓捕18人"));
+        yValues.add(new PieEntry(666f, "已盘查67人"));
+        yValues.add(new PieEntry(812f, "击毙2人"));
 //        yValues.add(new PieEntry(14f, "要塞"));
 //        yValues.add(new PieEntry(6f, "陆军"));
 //        yValues.add(new PieEntry(0.2f, "在线2"));
 //        yValues.add(new PieEntry(0.3f, "离线2"));
 
-        MPChartUtils.initPieChart(pieChart, getCenterText(), R.color.backgroup);
-        pieChart.setData(MPChartUtils.getPieData(pieChart, colors, yValues));
+        MPChartUtils.initFixPieChart(fixPieChart, getCenterText(), R.color.backgroup);
+        fixPieChart.setData(MPChartUtils.getPieData(fixPieChart, colors, yValues, true));
         // undo all highlights
-        pieChart.highlightValues(null);
-        pieChart.invalidate();
+        fixPieChart.highlightValues(null);
+        fixPieChart.invalidate();
+
+        yValues.remove(0);
+        yValues.remove(2);
+
+        //预警总数
+        MPChartUtils.initPieChart(alarmCountPieChart, "总预警人数(90人)");
+        alarmCountPieChart.setData(MPChartUtils.getPieData(alarmCountPieChart, colors, yValues, false));
+        // undo all highlights
+        alarmCountPieChart.highlightValues(null);
+        alarmCountPieChart.invalidate();
+
+        //重点人员
+        MPChartUtils.initPieChart(keyPeoplePieChart, "重点人员(36人)");
+        keyPeoplePieChart.setData(MPChartUtils.getPieData(keyPeoplePieChart, colors, yValues, false));
+        // undo all highlights
+        keyPeoplePieChart.highlightValues(null);
+        keyPeoplePieChart.invalidate();
+
+        //在逃人员
+        MPChartUtils.initPieChart(escapeePeoplePieChart, "在逃人员(88人)");
+        escapeePeoplePieChart.setData(MPChartUtils.getPieData(escapeePeoplePieChart, colors, yValues, false));
+        // undo all highlights
+        escapeePeoplePieChart.highlightValues(null);
+        escapeePeoplePieChart.invalidate();
+
+        //临控人员
+        MPChartUtils.initPieChart(tempControlPeoplePieChart, "临控人员(28人)");
+        tempControlPeoplePieChart.setData(MPChartUtils.getPieData(tempControlPeoplePieChart, colors, yValues, false));
+        // undo all highlights
+        tempControlPeoplePieChart.highlightValues(null);
+        tempControlPeoplePieChart.invalidate();
     }
 
     /**
@@ -126,9 +172,39 @@ public class MPAndroidChartActivity extends BaseActivity {
         yVals.add(new BarEntry(2, 1797));
         yVals.add(new BarEntry(3, 203));
 
-        MPChartUtils.initBarChart(barChart, xLabels);
-        barChart.setData(MPChartUtils.getBarData(barChart, yVals, "镜头数", R.color.backgroup));
-        barChart.invalidate();
+        MPChartUtils.initBarChart(commonBarChart, xLabels, false);
+        commonBarChart.setData(MPChartUtils.getBarData(commonBarChart, yVals, "镜头数", R.color.backgroup));
+        commonBarChart.invalidate();
+    }
+
+    /**
+     * 柱状图
+     */
+    private void showScrollBarChart() {
+        Random random = new Random();
+        List<String> xDataList = new ArrayList<>();// x轴数据源
+        List<BarEntry> yDataListOne = new ArrayList<>();// y轴数据数据源
+        //给上面的X、Y轴数据源做假数据测试
+        for (int i = 0; i < 30; i++) {
+            if (i < 10) {
+                // x轴显示的数据
+                xDataList.add("05-0" + (i + 1));
+            } else {
+                // x轴显示的数据
+                xDataList.add("05-" + (i + 1));
+            }
+
+            //y轴生成float类型的随机数
+            yDataListOne.add(new BarEntry(i, random.nextInt(88) + (random.nextInt(30) * random.nextInt(50))));
+        }
+
+        MPChartUtils.initBarChart(scrollBarChart, xDataList, true);
+        scrollBarChart.setData(MPChartUtils.getBarData(scrollBarChart, yDataListOne, "镜头数", R.color.backgroup));
+        //设置可左右滑动
+        scrollBarChart.getXAxis().setAxisMinimum(0);
+        scrollBarChart.getXAxis().setAxisMaximum(xDataList.size() - 1);
+        scrollBarChart.setVisibleXRange(0, 6);
+        scrollBarChart.invalidate();
     }
 
     /**
@@ -144,8 +220,60 @@ public class MPAndroidChartActivity extends BaseActivity {
         spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#888888")), 5, 9, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new RelativeSizeSpan(1.6f), 0, 4, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new RelativeSizeSpan(1.2f), 5, 9, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-
-        tv_name.setText(spannableString);
         return spannableString;
+    }
+
+    /**
+     * 折线图 或 曲线图
+     */
+    private void showLineChart() {
+        Random random = new Random();
+        List<String> xDataList = new ArrayList<>();// x轴数据源
+        List<Entry> yDataListOne = new ArrayList<>();// y轴数据数据源
+        List<Entry> yDataListTwo = new ArrayList<>();// y轴数据数据源
+        List<Entry> yDataListThree = new ArrayList<>();// y轴数据数据源
+        //给上面的X、Y轴数据源做假数据测试
+        for (int i = 0; i < 31; i++) {
+            if (i < 9) {
+                // x轴显示的数据
+                xDataList.add("05-0" + (i + 1));
+            } else {
+                // x轴显示的数据
+                xDataList.add("05-" + (i + 1));
+            }
+
+            //y轴生成float类型的随机数
+            yDataListOne.add(new Entry(i, random.nextInt(88) + (random.nextInt(30) * random.nextInt(50))));
+            yDataListTwo.add(new Entry(i, random.nextInt(88) + (random.nextInt(30) * random.nextInt(50))));
+            yDataListThree.add(new Entry(i, random.nextInt(88) + (random.nextInt(30) * random.nextInt(50))));
+        }
+
+        LineDataSet lineDataSetOne = new LineDataSet(yDataListOne, "巡查人数");
+        LineDataSet lineDataSetTwo = new LineDataSet(yDataListTwo, "入关人数");
+        LineDataSet lineDataSetThree = new LineDataSet(yDataListThree, "出关人数");
+        List<LineDataSet> lineDataSetList = new ArrayList<>();
+        lineDataSetList.add(MPChartUtils.initLineDataSet(faceCollectLineChart, lineDataSetOne, R.color.backgroup));
+        lineDataSetList.add(MPChartUtils.initLineDataSet(faceCollectLineChart, lineDataSetTwo, R.color.yellow));
+        lineDataSetList.add(MPChartUtils.initLineDataSet(faceCollectLineChart, lineDataSetThree, R.color.colorAccent));
+
+        MPChartUtils.initLineChart(faceCollectLineChart, xDataList);
+        faceCollectLineChart.setData(MPChartUtils.getLineData(faceCollectLineChart, lineDataSetList));
+        setLineChartCanScroll(faceCollectLineChart, xDataList);
+    }
+
+    /**
+     * 设置图表可以左右滑动，分三步
+     *
+     * @param lineChart
+     * @param xDataList
+     */
+    private void setLineChartCanScroll(LineChart lineChart, List<String> xDataList) {
+        // 第一步 设置x轴最大可见区域范围，超过范围就左右滑动图表显示其他数据，必须先设置xAxis.setAxisMaximum(); 否则，不会有滑动效果，还可能有异常问题出现；\
+        lineChart.getXAxis().setAxisMinimum(0);
+        lineChart.getXAxis().setAxisMaximum(xDataList.size());
+        // 第二步
+        lineChart.setVisibleXRange(0, 6);
+        // 第三步
+        lineChart.invalidate();
     }
 }

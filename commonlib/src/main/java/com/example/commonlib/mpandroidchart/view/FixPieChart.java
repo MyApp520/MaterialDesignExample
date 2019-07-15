@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.example.commonlib.mpandroidchart.renderer.PieChartRendererFixCover;
+import com.example.commonlib.mpandroidchart.renderer.SecondPieChartRendererFixCover;
 import com.github.mikephil.charting.charts.PieChart;
 
 /**
@@ -33,7 +33,8 @@ public class FixPieChart extends PieChart {
         }
         Log.e("FixPieChart", "init: mRenderer2 = " + mRenderer);
         //此处把mRenderer替换成我们自己的PieChartRenderer
-        mRenderer = new PieChartRendererFixCover(this, mAnimator, mViewPortHandler);
+//        mRenderer = new PieChartRendererFixCover(this, mAnimator, mViewPortHandler);//第一种方式
+        mRenderer = new SecondPieChartRendererFixCover(this, mAnimator, mViewPortHandler);//第二种方式
         Log.e("FixPieChart", "init: mRenderer3 = " + mRenderer);
     }
 }

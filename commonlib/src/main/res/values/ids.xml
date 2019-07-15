@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="edit_text_left_icon" type="id" />
+    <item name="edit_text_line_view" type="id" />
+    <item name="edit_text_visible_icon" type="id" />
+    <item name="edit_text_delete_icon" type="id" />
+    <item name="edit_text_content" type="id" />
+
+</resources>

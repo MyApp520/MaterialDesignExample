@@ -40,7 +40,7 @@ public class CoordinatorLayoutActivity extends BaseActivity {
         return false;
     }
 
-    @OnClick({R.id.btn_demo1, R.id.btn_demo2, R.id.btn_demo3})
+    @OnClick({R.id.btn_demo1, R.id.btn_demo2, R.id.btn_demo3, R.id.btn_demo4})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_demo1:
@@ -51,6 +51,9 @@ public class CoordinatorLayoutActivity extends BaseActivity {
                 break;
             case R.id.btn_demo3:
                 startActivity(new Intent(this, Demo3Activity.class));
+                break;
+            case R.id.btn_demo4:
+                startActivity(new Intent(this, Demo4Activity.class));
                 break;
         }
     }

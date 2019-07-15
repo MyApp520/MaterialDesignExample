@@ -74,6 +74,18 @@ dependencies {
         exclude group: 'support-v4'
     }
 
+    api(rootProject.ext.dependencies["okhttp3"]) {
+        exclude group: 'support-annotations'
+        exclude group: 'support-v7'
+        exclude group: 'support-v4'
+    }
+
+    api(rootProject.ext.dependencies["okhttp3-logging"]) {
+        exclude group: 'support-annotations'
+        exclude group: 'support-v7'
+        exclude group: 'support-v4'
+    }
+
     api(rootProject.ext.dependencies["rxpermissions2"]) {
         exclude group: 'support-annotations'
         exclude group: 'support-v7'
@@ -96,6 +108,8 @@ dependencies {
         exclude group: 'support-v7'
         exclude group: 'support-v4'
     }
+
+    api 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
 
     //引入dagger
     compileOnly rootProject.ext.dependencies["javax.annotation"]

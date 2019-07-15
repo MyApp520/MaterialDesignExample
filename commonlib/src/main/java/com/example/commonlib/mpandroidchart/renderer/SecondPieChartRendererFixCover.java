@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.charts.PieChart;
@@ -104,6 +105,8 @@ public class SecondPieChartRendererFixCover extends PieChartRenderer {
 
             final boolean drawValues = dataSet.isDrawValuesEnabled();
 
+            Log.e(TAG, "绘制文本内容 drawValues = " + drawValues + ", drawEntryLabels = " + drawEntryLabels);
+
             if (!drawValues && !drawEntryLabels)
                 continue;
 
@@ -113,8 +116,7 @@ public class SecondPieChartRendererFixCover extends PieChartRenderer {
             // apply the text-styling defined by the DataSet
             applyValueTextStyle(dataSet);
 
-            float lineHeight = Utils.calcTextHeight(mValuePaint, "Q")
-                    + Utils.convertDpToPixel(4f);
+            float lineHeight = Utils.calcTextHeight(mValuePaint, "Q") + Utils.convertDpToPixel(4f);
 
             IValueFormatter formatter = dataSet.getValueFormatter();
 

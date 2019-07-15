@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f2"
     tools:context="org.smile.mde.MainActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -61,20 +62,20 @@
 
             <org.smile.mde.view.SecondPTZCircleControlView
                 android:id="@+id/ptz_control_view"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:visibility="gone"/>
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:visibility="gone" />
 
             <org.smile.mde.view.StepArcView
                 android:id="@+id/StepArcView"
-                android:layout_gravity="center"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
