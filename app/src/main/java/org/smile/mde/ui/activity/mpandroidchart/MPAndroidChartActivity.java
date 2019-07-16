@@ -7,10 +7,15 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.commonlib.base.BaseActivity;
 import com.example.commonlib.mpandroidchart.view.FixPieChart;
 import com.example.commonlib.util.MPChartUtils;
+import com.example.commonlib.util.TimeUitls;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -20,14 +25,18 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
 import org.smile.mde.R;
+import org.smile.mde.view.PickerViewTimeUtil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class MPAndroidChartActivity extends BaseActivity {
+public class MPAndroidChartActivity extends BaseActivity implements OnTimeSelectListener {
 
     @BindView(R.id.common_bar_chart)
     BarChart commonBarChart;
@@ -45,6 +54,20 @@ public class MPAndroidChartActivity extends BaseActivity {
     PieChart escapeePeoplePieChart;
     @BindView(R.id.temp_control_people_pie_chart)
     PieChart tempControlPeoplePieChart;
+    @BindView(R.id.tv_face_statistics_date)
+    TextView tvFaceStatisticsDate;
+    @BindView(R.id.tv_inspect_people_count)
+    TextView tvInspectPeopleCount;
+    @BindView(R.id.tv_enter_people_count)
+    TextView tvEnterPeopleCount;
+    @BindView(R.id.tv_exit_people_count)
+    TextView tvExitPeopleCount;
+    @BindView(R.id.tv_alarm_statistics_date)
+    TextView tvAlarmStatisticsDate;
+    @BindView(R.id.tv_enter_statistics_date)
+    TextView tvEnterStatisticsDate;
+
+    private TimePickerView timePickerView;
 
     @Override
     protected int bindLayout() {
@@ -282,5 +305,40 @@ public class MPAndroidChartActivity extends BaseActivity {
         lineChart.setVisibleXRange(0, 6);
         // 第三步
         lineChart.invalidate();
+    }
+
+    @OnClick({R.id.tv_face_statistics_date, R.id.tv_alarm_statistics_date, R.id.tv_enter_statistics_date})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_face_statistics_date:
+                timePickerView = PickerViewTimeUtil.initTimePicker(MPAndroidChartActivity.this, this);
+                timePickerView.setDate(Calendar.getInstance());
+                timePickerView.show(tvFaceStatisticsDate);
+                break;
+            case R.id.tv_alarm_statistics_date:
+                timePickerView = PickerViewTimeUtil.initCustomTimePicker(MPAndroidChartActivity.this, new PickerViewTimeUtil.OnSelectCustomTimeListener() {
+                    @Override
+                    public void onSelectCustomTime(View view, String startTime, String endTime) {
+                        tvAlarmStatisticsDate.setText(startTime + " 至 " + endTime);
+                    }
+                });
+                timePickerView.setDate(Calendar.getInstance());
+                timePickerView.show(tvAlarmStatisticsDate);
+                break;
+            case R.id.tv_enter_statistics_date:
+                timePickerView = PickerViewTimeUtil.initTimePicker(MPAndroidChartActivity.this, this);
+                timePickerView.setDate(Calendar.getInstance());
+                timePickerView.show(tvEnterStatisticsDate);
+                break;
+        }
+    }
+
+    @Override
+    public void onTimeSelect(Date date, View view) {
+        if (tvFaceStatisticsDate == view) {
+            tvFaceStatisticsDate.setText(TimeUitls.getCurrentTime(4, date));
+        } else if (tvEnterStatisticsDate == view) {
+            tvEnterStatisticsDate.setText(TimeUitls.getCurrentTime(4, date));
+        }
     }
 }

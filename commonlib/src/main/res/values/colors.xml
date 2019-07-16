@@ -37,6 +37,7 @@
     <color name="outsideBlue">#2690f8</color>
     <color name="insideBlue">#58ade5</color>
     <color name="insideCircle">#c2b9b0</color>
+    <color name="default_hint_color">#c2b9b0</color>
 
 
     <color name="blue">#2A8EE3</color>

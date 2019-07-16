@@ -262,7 +262,7 @@ public class MPChartUtils {
         Legend legend = pieChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置竖直方向显示位置,legend.setYOffset设置偏移量
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);//设置水平方向显示位置，legend.setXOffset设置偏移量
-        legend.setYOffset(-18);//单位dp
+        legend.setYOffset(-20);//单位dp
         legend.setXOffset(16);
         legend.setForm(Legend.LegendForm.SQUARE);  //设置图例示意图形状，默认是方形
         legend.setFormSize(10);//设置图例示意图图形大小（单位：dp）
@@ -276,7 +276,7 @@ public class MPChartUtils {
         legend.setDrawInside(false);//可自行设置为true后查看效果
         legend.setEnabled(true);//是否显示图例示意图
 
-        pieChart.setExtraOffsets(0, 22f, 0, 28f);//注意：查源码可知，此处8f指的是8dp，而不是8个像素
+        pieChart.setExtraOffsets(0, 22f, 0, 32f);//注意：查源码可知，此处8f指的是8dp，而不是8个像素
     }
 
     /**
@@ -437,13 +437,14 @@ public class MPChartUtils {
 //        leftYAxis.addLimitLine(ll1);
 
         /** 开始配置图表 **/
-        lineChart.setDrawBorders(true);// 是否在折线图上添加边框
         // 曲线描述 -标题
         Description description = lineChart.getDescription();
         description.setText("我是Description()");//图形描述信息
         description.setTextSize(16f);// 标题字体大小
         description.setTextColor(ContextCompat.getColor(lineChart.getContext(), R.color.backgroup));// 标题字体颜色
         description.setEnabled(false);//是否显示图形描述信息
+
+        lineChart.setDrawBorders(true);// 是否在折线图上添加边框
         // 设置是否启动触摸响应
         lineChart.setTouchEnabled(true);
         // 是否可以拖拽

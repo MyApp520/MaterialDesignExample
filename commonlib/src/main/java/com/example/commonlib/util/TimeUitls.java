@@ -13,6 +13,7 @@ public class TimeUitls {
 
     /**
      * 获取当前时间
+     *
      * @param flag
      * @return
      */
@@ -27,6 +28,9 @@ public class TimeUitls {
                 break;
             case 3:
                 formatter = new SimpleDateFormat("yyyy-MM-dd");
+                break;
+            case 4:
+                formatter = new SimpleDateFormat("yyyy年MM月");
                 break;
         }
         if (formatter == null) {
@@ -69,6 +73,7 @@ public class TimeUitls {
 
     /**
      * 计算指定时间和当前时间相差多少
+     *
      * @param flag
      * @param endTime 指定时间
      * @return
@@ -91,8 +96,25 @@ public class TimeUitls {
         long minutes = (timestamp - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
         long seconds = (timestamp - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60) - minutes * (1000 * 60)) / (1000);
         if (days <= 0) {
-            return  hours + "小时后结束";
+            return hours + "小时后结束";
         }
         return days + "天" + hours + "小时后结束";
+    }
+
+    /**
+     * 获取结束时间减去开始时间的时间戳的值
+     *
+     * @param flag
+     * @param endTime   结束时间
+     * @param startTime 开始时间
+     * @return endTimeMillis - startTimeMillis（大于0：结束时间大于开始时间）
+     */
+    public static long getTimestamp(int flag, String endTime, String startTime) {
+        if (AndroidUtil.judgeStringIsNull(startTime) || AndroidUtil.judgeStringIsNull(endTime)) {
+            return 0;
+        }
+        long endTimeMillis = getTimeMillisByString(flag, endTime);
+        long startTimeMillis = getTimeMillisByString(flag, startTime);
+        return endTimeMillis - startTimeMillis;
     }
 }

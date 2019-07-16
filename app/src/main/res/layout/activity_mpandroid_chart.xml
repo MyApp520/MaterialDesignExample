@@ -12,112 +12,207 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:background="@drawable/common_white_corner_shape"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin">
-
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/face_collect_line_chart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true">
-
-            </com.github.mikephil.charting.charts.LineChart>
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:background="@drawable/common_white_corner_shape"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin">
+            android:background="@color/white"
+            android:orientation="vertical">
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/scroll_bar_chart"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="46dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical">
 
-            </com.github.mikephil.charting.charts.BarChart>
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="人脸采集统计"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-        <com.example.commonlib.view.CommonHorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
+                <TextView
+                    android:id="@+id/tv_face_statistics_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="2019-07"
+                    android:textColor="@color/black"
+                    android:textSize="16sp">
+
+                </TextView>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical">
 
-                <RelativeLayout
-                    android:layout_width="@dimen/common_pie_chart_width"
-                    android:layout_height="@dimen/common_pie_chart_width"
-                    android:layout_margin="@dimen/activity_vertical_margin"
-                    android:background="@drawable/common_white_corner_shape">
+                <TextView
+                    android:id="@+id/tv_inspect_people_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="巡查人数：250"
+                    android:textColor="@color/backgroup"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_enter_people_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="进关人数：150"
+                    android:textColor="@color/yellow"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_exit_people_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="出关人数：510"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/face_collect_line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin">
+
+            </com.github.mikephil.charting.charts.LineChart>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="预警统计"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_alarm_statistics_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="2019.07.25 - 2019.09.16"
+                android:textColor="@color/black"
+                android:textSize="16sp">
+
+            </TextView>
+
+            <com.example.commonlib.view.CommonHorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_alarm_statistics_date"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="4dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/alarm_count_pie_chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true">
+                        android:layout_width="@dimen/common_pie_chart_width"
+                        android:layout_height="@dimen/common_pie_chart_width"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/common_white_corner_shape">
 
                     </com.github.mikephil.charting.charts.PieChart>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="@dimen/common_pie_chart_width"
-                    android:layout_height="@dimen/common_pie_chart_width"
-                    android:layout_margin="@dimen/activity_vertical_margin"
-                    android:background="@drawable/common_white_corner_shape">
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/key_people_pie_chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true">
+                        android:layout_width="@dimen/common_pie_chart_width"
+                        android:layout_height="@dimen/common_pie_chart_width"
+                        android:layout_marginStart="@dimen/activity_vertical_margin"
+                        android:background="@drawable/common_white_corner_shape">
 
                     </com.github.mikephil.charting.charts.PieChart>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="@dimen/common_pie_chart_width"
-                    android:layout_height="@dimen/common_pie_chart_width"
-                    android:layout_margin="@dimen/activity_vertical_margin"
-                    android:background="@drawable/common_white_corner_shape">
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/escapee_people_pie_chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true">
+                        android:layout_width="@dimen/common_pie_chart_width"
+                        android:layout_height="@dimen/common_pie_chart_width"
+                        android:layout_marginStart="@dimen/activity_vertical_margin"
+                        android:background="@drawable/common_white_corner_shape">
 
                     </com.github.mikephil.charting.charts.PieChart>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="@dimen/common_pie_chart_width"
-                    android:layout_height="@dimen/common_pie_chart_width"
-                    android:layout_margin="@dimen/activity_vertical_margin"
-                    android:background="@drawable/common_white_corner_shape">
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/temp_control_people_pie_chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true">
+                        android:layout_width="@dimen/common_pie_chart_width"
+                        android:layout_height="@dimen/common_pie_chart_width"
+                        android:layout_marginEnd="@dimen/activity_vertical_margin"
+                        android:layout_marginStart="@dimen/activity_vertical_margin"
+                        android:background="@drawable/common_white_corner_shape">
 
                     </com.github.mikephil.charting.charts.PieChart>
-                </RelativeLayout>
 
-            </LinearLayout>
+                </LinearLayout>
 
-        </com.example.commonlib.view.CommonHorizontalScrollView>
+            </com.example.commonlib.view.CommonHorizontalScrollView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="首次过关人数统计"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_enter_statistics_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="2019-07"
+                android:textColor="@color/black"
+                android:textSize="16sp">
+
+            </TextView>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/scroll_bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_below="@+id/tv_enter_statistics_date"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp">
+
+            </com.github.mikephil.charting.charts.BarChart>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

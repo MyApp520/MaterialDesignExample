@@ -51,7 +51,7 @@ ext {
             "autolayout"                   : "com.zhy:autolayout:1.4.5",
             "butterknife"                  : "com.jakewharton:butterknife:${versions["butterknifeSdkversions"]}",
             "butterknife-compiler"         : "com.jakewharton:butterknife-compiler:${versions["butterknifeSdkversions"]}",
-            "pickerview"                   : "com.contrarywind:Android-PickerView:3.2.5",
+            "pickerview"                   : "com.contrarywind:Android-PickerView:4.1.8",
             "photoview"                    : "com.github.chrisbanes.photoview:library:1.2.3",
             "bm_photoview"                    : "com.bm.photoview:library:1.4.1",
             "numberprogressbar"            : "com.daimajia.numberprogressbar:library:1.2@aar",
