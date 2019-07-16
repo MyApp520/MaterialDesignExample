@@ -53,13 +53,13 @@ public class LineChartMarkView extends MarkerView {
                 //获取到曲线的所有在Y轴的数据集合，根据当前X轴的位置 来获取对应的Y轴值
                 float y = dataSet.getValues().get((int) e.getX()).getY();
                 if (i == 0) {
-                    tv_inspect_people_count.setText(dataSet.getLabel() + "：" + y);
+                    tv_inspect_people_count.setText(dataSet.getLabel() + "：" + (int) y);
                 }
                 if (i == 1) {
-                    tv_enter_people_count.setText(dataSet.getLabel() + "：" + y);
+                    tv_enter_people_count.setText(dataSet.getLabel() + "：" + (int) y);
                 }
                 if (i == 2) {
-                    tv_exit_people_count.setText(dataSet.getLabel() + "：" + y);
+                    tv_exit_people_count.setText(dataSet.getLabel() + "：" + (int) y);
                 }
             }
             tvDate.setText(indexAxisValueFormatter.getValues()[(int) e.getX()]);

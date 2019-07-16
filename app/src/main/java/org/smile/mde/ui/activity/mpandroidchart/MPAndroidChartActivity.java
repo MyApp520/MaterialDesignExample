@@ -13,6 +13,7 @@ import com.example.commonlib.mpandroidchart.view.FixPieChart;
 import com.example.commonlib.util.MPChartUtils;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -37,13 +38,13 @@ public class MPAndroidChartActivity extends BaseActivity {
     @BindView(R.id.scroll_bar_chart)
     BarChart scrollBarChart;
     @BindView(R.id.alarm_count_pie_chart)
-    FixPieChart alarmCountPieChart;
+    PieChart alarmCountPieChart;
     @BindView(R.id.key_people_pie_chart)
-    FixPieChart keyPeoplePieChart;
+    PieChart keyPeoplePieChart;
     @BindView(R.id.escapee_people_pie_chart)
-    FixPieChart escapeePeoplePieChart;
+    PieChart escapeePeoplePieChart;
     @BindView(R.id.temp_control_people_pie_chart)
-    FixPieChart tempControlPeoplePieChart;
+    PieChart tempControlPeoplePieChart;
 
     @Override
     protected int bindLayout() {
@@ -109,8 +110,8 @@ public class MPAndroidChartActivity extends BaseActivity {
 //        yValues.add(new PieEntry(0.1f, "零点1"));
 //        yValues.add(new PieEntry(0f, "零"));
         yValues.add(new PieEntry(777f, "总人数85人"));
-        yValues.add(new PieEntry(7f, "已抓捕18人"));
-        yValues.add(new PieEntry(666f, "已盘查67人"));
+        yValues.add(new PieEntry(18f, "已抓捕1888人"));
+        yValues.add(new PieEntry(67f, "已盘查6798人"));
         yValues.add(new PieEntry(812f, "击毙2人"));
 //        yValues.add(new PieEntry(14f, "要塞"));
 //        yValues.add(new PieEntry(6f, "陆军"));
@@ -153,6 +154,12 @@ public class MPAndroidChartActivity extends BaseActivity {
         // undo all highlights
         tempControlPeoplePieChart.highlightValues(null);
         tempControlPeoplePieChart.invalidate();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.e(TAG, "showPieChart: width = " + alarmCountPieChart.getWidth() + ", " + alarmCountPieChart.getRadius());
     }
 
     /**

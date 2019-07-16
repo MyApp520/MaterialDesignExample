@@ -80,90 +80,6 @@ public class MPChartUtils {
         mChart.getDescription().setEnabled(false);
         mChart.getAxisRight().setEnabled(false);
 
-        Legend legend = mChart.getLegend();
-        // 是否显示图例
-        if (isShowLegend) {
-            legend.setEnabled(true);
-            legend.setTextColor(Color.WHITE);
-            legend.setForm(Legend.LegendForm.CIRCLE);
-            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-            legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-            legend.setYEntrySpace(20f);
-            //图例的大小
-            legend.setFormSize(7f);
-            // 图例描述文字大小
-            legend.setTextSize(10);
-            legend.setXEntrySpace(20f);
-
-        } else {
-            legend.setEnabled(false);
-        }
-
-
-        XAxis xAxis = mChart.getXAxis();
-
-        // 是否显示x轴线
-        xAxis.setDrawAxisLine(true);
-        // 设置x轴线的颜色
-        xAxis.setAxisLineColor(Color.parseColor("#4cffffff"));
-        // 是否绘制x方向网格线
-        xAxis.setDrawGridLines(false);
-        //x方向网格线的颜色
-        xAxis.setGridColor(Color.parseColor("#30FFFFFF"));
-
-        // 设置x轴数据的位置
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        // 设置x轴文字的大小
-        xAxis.setTextSize(12);
-
-        // 设置x轴数据偏移量
-        xAxis.setYOffset(5);
-        final List<String> labels = mLabels;
-        // 显示x轴标签
-        IAxisValueFormatter formatter = new IAxisValueFormatter() {
-
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                int index = (int) value;
-                if (index < 0 || index >= labels.size()) {
-                    return "";
-                }
-                return labels.get(index);
-                // return labels.get(Math.min(Math.max((int) value, 0), labels.size() - 1));
-            }
-
-        };
-        // 引用标签
-        xAxis.setValueFormatter(formatter);
-        // 设置x轴文字颜色
-        xAxis.setTextColor(mChart.getResources().getColor(R.color.char_text_color));
-        // 设置x轴每最小刻度 interval
-        xAxis.setGranularity(1f);
-
-        YAxis yAxis = mChart.getAxisLeft();
-        // 设置y轴的最小值
-        yAxis.setAxisMinimum(yMin); //设置y轴的最大值 setAxisMaximum 不设置就自动适配
-        // 不显示y轴
-        yAxis.setDrawAxisLine(false);
-        // 设置y轴数据的位置
-        yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        // 不从y轴发出横向直线
-        yAxis.setDrawGridLines(false);
-        // 是否显示y轴坐标线
-        yAxis.setDrawZeroLine(true);
-        // 设置y轴的文字颜色
-        yAxis.setTextColor(mChart.getResources().getColor(R.color.char_text_color));
-        // 设置y轴文字的大小
-        yAxis.setTextSize(12);
-        // 设置y轴数据偏移量
-        //yAxis.setXOffset(30);
-        // yAxis.setYOffset(-3);
-        yAxis.setXOffset(15);
-        // yAxis.setGranularity(yGranularity);
-        yAxis.setLabelCount(5, false);
-        //yAxis.setGranularity(5);//interval
-
         Matrix matrix = new Matrix();
         // 根据数据量来确定 x轴缩放大倍
         if (mLabels.size() <= 10) {
@@ -308,7 +224,6 @@ public class MPChartUtils {
     public static void initPieChart(PieChart pieChart, String descriptionText) {
         pieChart.setLogEnabled(AppDebugUtil.isDebug());//打开图表的日志
 
-        pieChart.setDrawCenterText(false);  //饼状图中间文字不显示
         Description description = pieChart.getDescription();
         description.setPosition(Utils.convertDpToPixel(76f), Utils.convertDpToPixel(28f));
         description.setText(descriptionText);//图形描述信息
@@ -316,6 +231,7 @@ public class MPChartUtils {
         description.setTextSize(16f);
         description.setTextAlign(Paint.Align.CENTER);// 对齐方式：居中对齐
         description.setEnabled(!TextUtils.isEmpty(descriptionText));//是否显示图形描述信息
+
         pieChart.setRotationAngle(-90); // 设置饼图从哪个角度开始绘制
         pieChart.setUsePercentValues(false);  //显示成百分比
         //设置部分手势事件
@@ -323,9 +239,11 @@ public class MPChartUtils {
         pieChart.setRotationEnabled(false); // 是否可以手动旋转
         pieChart.setHighlightPerTapEnabled(false);//设置为false之后，点击每一块不能向外突出
 
+        //饼状图中间文字不显示
+        pieChart.setDrawCenterText(false);
         //设置显示饼图还是显示圆环
         pieChart.setDrawHoleEnabled(true); //false:设置实心；   true:关闭实心，饼图由圆环和中心孔两部分组成
-        pieChart.setHoleRadius(88f);//当饼图以圆环显示时，设置中心孔的半径与饼图半径的百分比
+        pieChart.setHoleRadius(80f);//当饼图以圆环显示时，设置中心孔的半径与饼图半径的百分比
         //默认情况下，会绘制一个半透明圆覆盖在饼图上，这里设置这个圆的半径与饼图半径的百分比，这个圆的背景色默认是半透明的
         pieChart.setTransparentCircleRadius(1f);//如果不想显示这个透明圆，半径设置成一个很小的值（看源码，好像是小于setHoleRadius即可）
         pieChart.setTransparentCircleColor(ContextCompat.getColor(pieChart.getContext(), R.color.white));//设置透明圆的背景色
@@ -343,17 +261,22 @@ public class MPChartUtils {
         //图例示意图相关设置
         Legend legend = pieChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置竖直方向显示位置,legend.setYOffset设置偏移量
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//设置水平方向显示位置，legend.setXOffset设置偏移量
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);//设置水平方向显示位置，legend.setXOffset设置偏移量
+        legend.setYOffset(-18);//单位dp
+        legend.setXOffset(16);
         legend.setForm(Legend.LegendForm.SQUARE);  //设置图例示意图形状，默认是方形
-        legend.setXEntrySpace(2f);//设置距离饼图的距离，防止与饼图重合
-        legend.setYEntrySpace(0f);
+        legend.setFormSize(10);//设置图例示意图图形大小（单位：dp）
+        legend.setTextSize(12);//文字大小
+        legend.setTextColor(ContextCompat.getColor(pieChart.getContext(), R.color.insideCircle));
+        legend.setXEntrySpace(8f);//示意图水平显示时，设置各个条目的间隔，默认为6dp
+        legend.setYEntrySpace(2f);
         legend.setWordWrapEnabled(true);//设置允许示意图的内容换行，否则数据过多的时候会超出屏幕范围
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//内容排列方向
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL);//内容排列方向
         legend.setDrawInside(false);//可自行设置为true后查看效果
         legend.setEnabled(true);//是否显示图例示意图
 
-        pieChart.setExtraOffsets(0, 18f, 0, 8f);//注意：查源码可知，此处8f指的是8dp，而不是8个像素
+        pieChart.setExtraOffsets(0, 22f, 0, 28f);//注意：查源码可知，此处8f指的是8dp，而不是8个像素
     }
 
     /**
@@ -365,7 +288,6 @@ public class MPChartUtils {
     public static void initFixPieChart(FixPieChart pieChart, CharSequence centerText, int centerTextColor) {
         pieChart.setLogEnabled(AppDebugUtil.isDebug());//打开图表的日志
 
-        pieChart.setDrawCenterText(false);  //饼状图中间文字不显示
         Description description = pieChart.getDescription();
         description.setText("我是Description()");//图形描述信息
         description.setEnabled(false);//是否显示图形描述信息
@@ -404,7 +326,7 @@ public class MPChartUtils {
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置竖直方向显示位置,legend.setYOffset设置偏移量
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//设置水平方向显示位置，legend.setXOffset设置偏移量
         legend.setForm(Legend.LegendForm.SQUARE);  //设置图例示意图形状，默认是方形
-        legend.setXEntrySpace(7f);//设置距离饼图的距离，防止与饼图重合
+        legend.setXEntrySpace(7f);//示意图水平显示时，设置各个条目的间隔，默认为6dp
         legend.setYEntrySpace(5f);
         legend.setWordWrapEnabled(true);//设置允许示意图的内容换行，否则数据过多的时候会超出屏幕范围
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
@@ -422,7 +344,7 @@ public class MPChartUtils {
      * @param yValues
      * @return
      */
-    public static PieData getPieData(FixPieChart pieChart, List<Integer> colors, List<PieEntry> yValues, boolean isDrawValues) {
+    public static PieData getPieData(PieChart pieChart, List<Integer> colors, List<PieEntry> yValues, boolean isDrawValues) {
         // y轴的集合
         PieDataSet pieDataSet = new PieDataSet(yValues, "");//第二个参数：示例图的描述信息，可以通过pieChart.getLegend()关掉
         pieDataSet.setSliceSpace(0f); //设置每个饼状图之间的距离
@@ -551,7 +473,7 @@ public class MPChartUtils {
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置竖直方向显示位置,legend.setYOffset设置偏移量
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//设置水平方向显示位置，legend.setXOffset设置偏移量
         legend.setForm(Legend.LegendForm.CIRCLE);  //设置图例示意图形状，默认是方形
-        legend.setXEntrySpace(7f);//设置距离图的距离，防止与图重合
+        legend.setXEntrySpace(7f);//示意图水平显示时，设置各个条目的间隔，默认为6dp
         legend.setYEntrySpace(5f);
         legend.setWordWrapEnabled(true);//设置允许示意图的内容换行，否则数据过多的时候会超出屏幕范围
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
