@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.smile.mde.ui.activity.audio_video.PlayVoiceActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/backgroup"
+        android:gravity="center"
+        android:text="语言播报"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/image_back"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/icon_back"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <Button
+        android:id="@+id/btn_play_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:text="play MediaPlayer"
+        app:layout_constraintStart_toEndOf="@+id/image_back"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <Button
+        android:id="@+id/btn_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:text="play sound"
+        app:layout_constraintStart_toEndOf="@+id/image_back"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_voice" />
+
+</android.support.constraint.ConstraintLayout>

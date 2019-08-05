@@ -115,6 +115,9 @@ dependencies {
         exclude group: 'support-v7'
         exclude group: 'support-v4'
     }
+    api("com.qmuiteam:qmui:1.4.0") {
+        exclude group: 'com.android.support'
+    }
 
     //引入dagger
     compileOnly rootProject.ext.dependencies["javax.annotation"]

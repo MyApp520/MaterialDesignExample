@@ -51,8 +51,11 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
-        </service>
+            android:process=":remote"></service>
+
+        <activity
+            android:name=".ui.activity.audio_video.PlayVoiceActivity"
+            android:label="@string/title_activity_play_voice"></activity>
     </application>
 
 </manifest>
