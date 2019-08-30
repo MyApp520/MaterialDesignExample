@@ -114,25 +114,25 @@ public class DrawView extends View {
         mViewWidth = mViewCanvas.getWidth();
         mViewHeight = mViewCanvas.getHeight();
         Log.e(TAG, "init() 初始化各个参数 mViewWidth = " + mViewWidth + ", mViewHeight = " + mViewHeight);
-        // 先绘制bitmap，再将bitmap绘制到屏幕
+        // 先创建出一个bitmap，该bitmap的宽高就是整个DrawView的宽高
         mBitmap = Bitmap.createBitmap(mViewWidth, mViewHeight, Bitmap.Config.ARGB_8888);
         mTempCanvas = new Canvas(mBitmap);
 
         // 背景画笔
         mViewPaint = new Paint();
         mViewPaint.setColor(getResources().getColor(R.color.bg_shadow));
-        // 绘制屏幕背景
+        // 通过mTempCanvas给mBitmap画个边框，这个边框的宽高就是整个mBitmap的宽高
         mTempCanvas.drawRect(0, 0, mTempCanvas.getWidth(), mTempCanvas.getHeight(), mViewPaint);
 
         // 透明框画笔
         mTransparentRectfPaint = new Paint();
-        //透明效果
-        PorterDuffXfermode porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);    //SRC_OUT或者CLEAR都可以
+        // 透明效果
+        PorterDuffXfermode porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);//SRC_OUT或者CLEAR都可以
         mTransparentRectfPaint.setXfermode(porterDuffXfermode);
         mTransparentRectfPaint.setAntiAlias(true);
 
         mTransparentRectf = new RectF();//透明框
-
+        // 绘制完bitmap后，再将bitmap绘制到屏幕上
         mViewCanvas.drawBitmap(mBitmap, 0, 0, mViewPaint);
     }
 
