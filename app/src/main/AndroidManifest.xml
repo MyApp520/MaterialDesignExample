@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.smile.mde">
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -10,8 +12,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="m">
 
+        <!-- 百度地图 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="OFC2bSoS91TPT02SHGBtKOhGRhLon0f2" >
+        </meta-data>
         <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -36,9 +45,14 @@
         <activity android:name=".ui.activity.ConstraintLayoutActivity" />
         <activity android:name=".ui.activity.mpandroidchart.MPAndroidChartActivity" />
         <activity android:name=".ui.activity.AMapActivity" />
+        <activity android:name=".ui.activity.BaiDuMapTrackActivity" />
 
-        <!-- 定位需要的服务 -->
+        <!-- 高德地图 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
+        <!-- 百度地图 定位需要的服务 -->
+        <service android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"/>
     </application>
 
 </manifest>

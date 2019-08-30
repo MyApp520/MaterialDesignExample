@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentProvider;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
@@ -41,6 +43,12 @@ public class MyApplication extends BaseApplication implements HasActivityInjecto
 
     @Inject
     UserBean userBean;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {

@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file(getRootDir().absolutePath + File.separator + "debug.keystore")
+            storePassword 'android'
+        }
+    }
     compileSdkVersion rootProject.ext.android.compileSdkversions
     buildToolsVersion rootProject.ext.android.buildToolsversions
 
@@ -23,6 +31,8 @@ android {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）"arm64-v8a", "x86","x86_64"
             abiFilters "armeabi", "armeabi-v7a"
         }
+
+        multiDexEnabled true
     }
 
     buildTypes {
