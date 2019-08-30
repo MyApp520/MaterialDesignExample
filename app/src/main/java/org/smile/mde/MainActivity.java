@@ -7,10 +7,8 @@ import android.widget.Toast;
 
 import com.example.commonlib.base.BaseActivity;
 
-import org.smile.mde.ui.activity.AMapActivity;
 import org.smile.mde.ui.activity.BaiDuMapTrackActivity;
 import org.smile.mde.ui.activity.ConstraintLayoutActivity;
-import org.smile.mde.ui.activity.FaceRectActivity;
 import org.smile.mde.ui.activity.ToolBarActivity;
 import org.smile.mde.ui.activity.TwoRecyclerViewActivity;
 import org.smile.mde.ui.activity.design.CoordinatorLayoutActivity;
@@ -28,7 +26,6 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
     Button btnToolbar;
     @BindView(R.id.ptz_control_view)
     SecondPTZCircleControlView secondPTZCircleControlView;
-
 
     @Override
     protected int bindLayout() {
