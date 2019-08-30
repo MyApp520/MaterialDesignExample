@@ -55,6 +55,11 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * 根据已有的经纬度列表画轨迹
+ * 使用的百度地图
+ * 原作者：https://github.com/Wocus/BMap
+ */
 public class BaiDuMapTrackActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();

@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.ContentProvider;
 import android.util.Log;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.example.commonlib.base.BaseApplication;
 import com.example.commonlib.bean.UserBean;
 import com.example.commonlib.util.AppDebugUtil;
@@ -46,6 +47,7 @@ public class MyApplication extends BaseApplication implements HasActivityInjecto
         super.onCreate();
         AppDebugUtil.syncIsDebug(getApplicationContext());
         DaggerAppComponent.builder().baseComponent(getBaseComponent()).build().inject(this);
+        SDKInitializer.initialize(getApplicationContext());
         Log.e(TAG, "MyApplication onCreate: userBean = " + userBean);
     }
 
