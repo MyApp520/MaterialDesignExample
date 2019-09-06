@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -59,6 +60,15 @@ public class MdeBarChartView extends View {
 
     // 单条柱状图宽度
     float itemBarWidth;
+
+    // 手指触摸点在view中的坐标
+    float mTouchX, mTouchY;
+
+    // 柱状图最后一次发生touch事件的时间
+    private long lastTouchTimeMillis;
+
+    // 是否绘制水平虚线
+    boolean isDrawHorizontalDottedLine = true;
 
     /**
      * 水平虚线路径
@@ -135,6 +145,7 @@ public class MdeBarChartView extends View {
         this.xAxisDataList.add("3月");
         this.xAxisDataList.add("4月");
         this.xAxisDataList.add("5月");
+        this.xAxisDataList.add("有效次数");
     }
 
     public void setYAxisDataList(List<Integer> yAxisDataList) {
@@ -147,6 +158,7 @@ public class MdeBarChartView extends View {
         this.yAxisDataList.add(321);
         this.yAxisDataList.add(456);
         this.yAxisDataList.add(500);
+        this.yAxisDataList.add(35);
     }
 
     public void setYAxisLabelList(List<Integer> yAxisLabelList) {
@@ -196,8 +208,6 @@ public class MdeBarChartView extends View {
         if (mHorizontalDottedLinePath == null) {
             mHorizontalDottedLinePath = new Path();
         }
-        // 是否绘制水平虚线
-        boolean isDrawHorizontalDottedLine = true;
         Rect yAxisLabelValueRect = new Rect();
         String yAxisLabelValue;
         for (int i = 1; i < 7; i++) {
@@ -237,7 +247,7 @@ public class MdeBarChartView extends View {
             canvas.drawText(xAxisValue, xAxisValueOffset + itemXAxisLabelWidth / 2,
                     xAxisLineStartY + mXAxisTextPaint.getFontSpacing(), mXAxisTextPaint);
 
-            // 绘制y轴的柱状图
+            // 计算y轴的柱状图图形RectF值
             if (mBarRectF == null) {
                 mBarRectF = new RectF();
             }
@@ -245,11 +255,42 @@ public class MdeBarChartView extends View {
             mBarRectF.right = mBarRectF.left + itemBarWidth;
             mBarRectF.bottom = xAxisLineStartY;
             mBarRectF.top = mBarRectF.bottom - yAxisDataList.get(i) * yAxisScaleValue;
+
+            if (mTouchX > 0 && mTouchY > 0 && mBarRectF.contains(mTouchX, mTouchY)) {
+                // 选中了这条柱状图（left <= x < right and top <= y < bottom）
+                mBarPaint.setColor(ContextCompat.getColor(mContext, R.color.backgroup_select));
+            } else {
+                mBarPaint.setColor(ContextCompat.getColor(mContext, R.color.backgroup));
+            }
+            // 绘制y轴的柱状图
             canvas.drawRect(mBarRectF, mBarPaint);
 
             // 更新x轴的坐标标签占的宽度
             xAxisValueOffset += itemXAxisLabelWidth;
         }
+    }
+
+    /**
+     * 柱状图touch事件
+     *
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (System.currentTimeMillis() - lastTouchTimeMillis > 100) {
+                    mTouchX = (int) ev.getX();
+                    mTouchY = (int) ev.getY();
+                    lastTouchTimeMillis = System.currentTimeMillis();
+                    invalidate();
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return true;
     }
 
     /**
