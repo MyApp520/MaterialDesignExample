@@ -4,8 +4,7 @@
 /build
 /local.properties
 .DS_Store
-app/build
-commonlib/build
+/app/build
+/commonlib/build
 /captures
 .externalNativeBuild
-commonlib/libs/

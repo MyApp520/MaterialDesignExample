@@ -1,0 +1,6 @@
+
+问题 1、Didn't find class "android.view.View$OnUnhandledKeyEventListener"；
+    原因：
+        1）界面xml布局某个控件导错了包；
+        2）某个子布局的某个控件导错了包；比如：某个子view的布局、适配器的布局；
+        3）把崩溃界面涉及到的所有布局都检查一遍；

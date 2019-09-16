@@ -1,11 +1,11 @@
 ext {
     android = [
-            compileSdkversions: 27,
+            compileSdkversions: 28,
             buildToolsversions: "28.0.3",
             minSdkversions    : 19,
-            targetSdkversions : 27,
+            targetSdkversions : 28,
             versionsCode      : 1,
-            versionsName      : "v1.00.01.190522"
+            versionsName      : "v1.00.02.190830"
     ]
 
     versions = [
@@ -31,8 +31,8 @@ ext {
             "cardview-v7"                  : "com.android.support:cardview-v7:${versions["androidSupportSdkversions"]}",
 
             //fragmentation框架
-            "fragmentation"                : "me.yokeyword:fragmentation:1.3.6",
-            "fragmentation-core"           : "me.yokeyword:fragmentation-core:1.3.6",
+            "fragmentation"                : "me.yokeyword:fragmentation:1.3.7",
+            "fragmentation-core"           : "me.yokeyword:fragmentation-core:1.3.7",
 
             //network
             "retrofit"                     : "com.squareup.retrofit2:retrofit:${versions["retrofitSdkversions"]}",
@@ -92,7 +92,7 @@ ext {
             "androideventbus"              : "org.simple:androideventbus:1.0.5.1",
             "otto"                         : "com.squareup:otto:1.3.8",
             "gson"                         : "com.google.code.gson:gson:2.8.2",
-            "multidex"                     : "com.android.support:multidex:1.0.1",
+            "multidex"                     : "com.android.support:multidex:1.0.3",
             "javax.annotation"             : "javax.annotation:jsr250-api:1.0",
             "arouter"                      : "com.alibaba:arouter-api:1.4.1",
             "arouter-compiler"             : "com.alibaba:arouter-compiler:1.2.2",

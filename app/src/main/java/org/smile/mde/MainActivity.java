@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.example.commonlib.base.BaseActivity;
 
-import org.smile.mde.ui.activity.AMapActivity;
+import org.smile.mde.ui.activity.BaiDuMapTrackActivity;
 import org.smile.mde.ui.activity.ConstraintLayoutActivity;
 import org.smile.mde.ui.activity.ToolBarActivity;
 import org.smile.mde.ui.activity.TwoRecyclerViewActivity;
@@ -26,7 +26,6 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
     Button btnToolbar;
     @BindView(R.id.ptz_control_view)
     SecondPTZCircleControlView secondPTZCircleControlView;
-
 
     @Override
     protected int bindLayout() {
@@ -51,7 +50,9 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_face_rect:
-                startActivity(new Intent(this, AMapActivity.class));
+//                startActivity(new Intent(this, FaceRectActivity.class));
+//                startActivity(new Intent(this, AMapActivity.class));//高德地图
+                startActivity(new Intent(this, BaiDuMapTrackActivity.class));//百度地图
                 break;
             case R.id.btn_two_recycler_view:
                 startActivity(new Intent(this, TwoRecyclerViewActivity.class));
