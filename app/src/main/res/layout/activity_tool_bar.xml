@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="org.smile.mde.ui.activity.ToolBarActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,11 +29,11 @@
             android:text="自定义"
             android:textColor="@color/backgroup" />
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- contentInsetStart 的作用类似于paddingStart: 默认值是16dp -->
     <!-- contentInsetEnd 的作用类似于paddingEnd: 默认值是0dp -->
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,10 +61,10 @@
                 android:textColor="@color/white" />
         </RelativeLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- contentInsetStartWithNavigation：表示其他内容与navigationIcon之间的间隔  -->
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,6 +81,6 @@
             android:layout_height="match_parent"
             android:textCursorDrawable="@color/white"
             android:theme="@style/MyEditText" />
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 </LinearLayout>

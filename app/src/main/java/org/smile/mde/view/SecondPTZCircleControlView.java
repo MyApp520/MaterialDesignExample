@@ -187,7 +187,7 @@ public class SecondPTZCircleControlView extends View {
             trianglePath.moveTo(pointF1.x, pointF1.y);// 此点为多边形的起点
             trianglePath.lineTo(pointF2.x, pointF2.y);
             trianglePath.lineTo(pointF3.x, pointF3.y);
-            trianglePath.close(); // 使这些点构成封闭的多边形，封闭的三个点组成的就是三角形
+            trianglePath.close(); // 使这些点构成封闭的多边形，三个点组成的就是三角形
             mPaint.setColor(Color.WHITE);
             canvas.drawPath(trianglePath, mPaint);
 

@@ -1,9 +1,10 @@
 package org.smile.mde.ui.activity;
 
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.example.commonlib.base.BaseActivity;
 import com.example.commonlib.util.ShowToast;

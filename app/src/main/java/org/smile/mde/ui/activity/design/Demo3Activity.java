@@ -1,18 +1,19 @@
 package org.smile.mde.ui.activity.design;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.commonlib.adapter.CommonViewPagerAdapter;
 import com.example.commonlib.base.BaseActivity;
 import com.example.commonlib.util.ShowToast;
 import com.example.commonlib.view.NoScrollViewPager;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.tabs.TabLayout;
 
 import org.smile.mde.R;
 import org.smile.mde.ui.activity.design.fragment.Demo1Fragment;
@@ -56,7 +57,7 @@ public class Demo3Activity extends BaseActivity {
 //        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);//设置展开后标题的颜色
 //        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);//设置收缩后标题的颜色
         initToolbar1();
-        initTablayout();
+        initTabLayout();
         initAppBarLayout();
     }
 
@@ -98,7 +99,7 @@ public class Demo3Activity extends BaseActivity {
         });
     }
 
-    private void initTablayout() {
+    private void initTabLayout() {
         ArrayList<String> titleList = new ArrayList<>();
         titleList.add("tab111");
         titleList.add("tab222");

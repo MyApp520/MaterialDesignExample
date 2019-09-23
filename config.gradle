@@ -5,30 +5,29 @@ ext {
             minSdkversions    : 19,
             targetSdkversions : 28,
             versionsCode      : 1,
-            versionsName      : "v1.00.02.190830"
+            versionsName      : "v1.00.03.190904"
     ]
 
     versions = [
-            androidSupportSdkversions: "27.1.1",
-            retrofitSdkversions      : "2.4.0",
+            retrofitSdkversions      : "2.6.0",
             dagger2Sdkversions       : "2.17",
-            glideSdkversions         : "4.7.1",
-            butterknifeSdkversions   : "8.8.1",
-            rxlifecycleSdkversions   : "1.0",
-            rxlifecycle2Sdkversions  : "2.2.1",
-            espressoSdkversions      : "3.0.1",
-            canarySdkversions        : "1.5.4",
+            glideSdkversions         : "4.9.0",
+            butterknifeSdkversions   : "10.1.0",
+            rxlifecycleSdkVersion   : "1.0",
+            rxlifecycle2SdkVersion  : "2.2.2",
+            espressoSdkVersion      : "3.0.1",
+            canarySdkVersion        : "1.6.3",
             objectbox                : "2.1.0"
     ]
 
     dependencies = [
             //support
-            "appcompat-v7"                 : "com.android.support:appcompat-v7:${versions["androidSupportSdkversions"]}",
-            "design"                       : "com.android.support:design:27.0.1",
-            "support-v4"                   : "com.android.support:support-v4:${versions["androidSupportSdkversions"]}",
-            "annotations"                  : "com.android.support:support-annotations:${versions["androidSupportSdkversions"]}",
-            "recyclerview-v7"              : "com.android.support:recyclerview-v7:${versions["androidSupportSdkversions"]}",
-            "cardview-v7"                  : "com.android.support:cardview-v7:${versions["androidSupportSdkversions"]}",
+            "appcompat-v7"                 : 'androidx.appcompat:appcompat:1.0.0',
+            "design"                       : 'com.google.android.material:material:1.0.0',
+            "support-v4"                   : 'androidx.legacy:legacy-support-v4:1.0.0',
+            "annotations"                  : 'androidx.annotation:annotation:1.0.0',
+            "recyclerview-v7"              : 'androidx.recyclerview:recyclerview:1.0.0',
+            "cardview-v7"                  : 'androidx.cardview:cardview:1.0.0',
 
             //fragmentation框架
             "fragmentation"                : "me.yokeyword:fragmentation:1.3.7",
@@ -50,9 +49,9 @@ ext {
             "autolayout"                   : "com.zhy:autolayout:1.4.5",
             "butterknife"                  : "com.jakewharton:butterknife:${versions["butterknifeSdkversions"]}",
             "butterknife-compiler"         : "com.jakewharton:butterknife-compiler:${versions["butterknifeSdkversions"]}",
-            "pickerview"                   : "com.contrarywind:Android-PickerView:3.2.5",
-            "photoview"                    : "com.github.chrisbanes.photoview:library:1.2.3",
-            "bm_photoview"                    : "com.bm.photoview:library:1.4.1",
+            "pickerview"                   : "com.contrarywind:Android-PickerView:4.1.8",
+            "photoview"                    : "com.github.chrisbanes:PhotoView:2.3.0",
+            "bm_photoview"                 : "com.bm.photoview:library:1.4.1",
             "numberprogressbar"            : "com.daimajia.numberprogressbar:library:1.2@aar",
             "nineoldandroids"              : "com.nineoldandroids:library:2.4.0",
             "paginate"                     : "com.github.markomilos:paginate:0.5.1",
@@ -73,14 +72,14 @@ ext {
             "rxerrorhandler"               : "me.jessyan:rxerrorhandler:1.0.1",
 
             //rx2
-            "rxandroid2"                   : "io.reactivex.rxjava2:rxandroid:2.0.2",
-            "rxjava2"                      : "io.reactivex.rxjava2:rxjava:2.2.2",
-            "rxlifecycle2"                 : "com.trello.rxlifecycle2:rxlifecycle:${versions["rxlifecycle2Sdkversions"]}",
-            "rxlifecycle2-android"         : "com.trello.rxlifecycle2:rxlifecycle-android:${versions["rxlifecycle2Sdkversions"]}",
-            "rxlifecycle2-components"      : "com.trello.rxlifecycle2:rxlifecycle-components:${versions["rxlifecycle2Sdkversions"]}",
-            "rxcache2"                     : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
-            "rxpermissions2"               : "com.github.tbruyelle:rxpermissions:0.10.2",
-            "rxerrorhandler2"              : "me.jessyan:rxerrorhandler:2.1.1",
+            "rxandroid2"               : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            "rxjava2"                  : "io.reactivex.rxjava2:rxjava:2.2.10",
+            "rxlifecycle2"             : "com.trello.rxlifecycle2:rxlifecycle:${versions["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-android"     : "com.trello.rxlifecycle2:rxlifecycle-android:${versions["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-components"  : "com.trello.rxlifecycle2:rxlifecycle-components:${versions["rxlifecycle2SdkVersion"]}",
+            "rxcache2"                 : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
+            "rxpermissions2"           : "com.github.tbruyelle:rxpermissions:0.10.2",
+            "rxerrorhandler2"          : "me.jessyan:rxerrorhandler:2.1.1",
 
             //tools
             "dagger2"                      : "com.google.dagger:dagger:${versions["dagger2Sdkversions"]}",
@@ -91,7 +90,7 @@ ext {
             "androideventbus"              : "org.simple:androideventbus:1.0.5.1",
             "otto"                         : "com.squareup:otto:1.3.8",
             "gson"                         : "com.google.code.gson:gson:2.8.2",
-            "multidex"                     : "com.android.support:multidex:1.0.3",
+            "multidex"                     : 'androidx.multidex:multidex:2.0.0',
             "javax.annotation"             : "javax.annotation:jsr250-api:1.0",
             "arouter"                      : "com.alibaba:arouter-api:1.4.1",
             "arouter-compiler"             : "com.alibaba:arouter-compiler:1.2.2",

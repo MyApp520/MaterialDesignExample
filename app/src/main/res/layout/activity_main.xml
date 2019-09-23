@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="org.smile.mde.MainActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -59,6 +59,13 @@
                 android:layout_marginTop="8dp"
                 android:text="MPAndroidChart的使用" />
 
+            <Button
+                android:id="@+id/btn_customize_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Customize View 的使用" />
+
             <org.smile.mde.view.SecondPTZCircleControlView
                 android:id="@+id/ptz_control_view"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -76,6 +83,6 @@
                 android:layout_marginTop="10dp"
                 android:visibility="gone"/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

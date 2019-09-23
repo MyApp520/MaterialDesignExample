@@ -5,8 +5,9 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentProvider;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 import android.util.Log;
+
+import androidx.multidex.MultiDex;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.example.commonlib.base.BaseApplication;

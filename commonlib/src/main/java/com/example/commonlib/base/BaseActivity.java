@@ -2,10 +2,11 @@ package com.example.commonlib.base;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.commonlib.util.ShowToast;
 import com.tbruyelle.rxpermissions2.RxPermissions;

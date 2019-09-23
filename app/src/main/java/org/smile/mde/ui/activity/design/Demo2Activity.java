@@ -1,14 +1,15 @@
 package org.smile.mde.ui.activity.design;
 
 import android.graphics.Color;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
 import com.example.commonlib.base.BaseActivity;
 import com.example.commonlib.util.ShowToast;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import org.smile.mde.R;
 
