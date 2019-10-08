@@ -1,8 +1,9 @@
 package com.example.commonlib.arouter;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+
+import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 

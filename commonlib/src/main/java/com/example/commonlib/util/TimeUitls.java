@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -32,6 +33,9 @@ public class TimeUitls {
             case 4:
                 formatter = new SimpleDateFormat("yyyy年MM月");
                 break;
+            case 5:
+                formatter = new SimpleDateFormat("yyyy年MM月dd日");
+                break;
         }
         if (formatter == null) {
             formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,6 +45,41 @@ public class TimeUitls {
         }
         Date curDate = new Date(System.currentTimeMillis());
         return formatter.format(curDate);
+    }
+
+    public static Date getDateByStringTime(int flag, String time) {
+        SimpleDateFormat formatter = null;
+        switch (flag) {
+            case 1:
+                formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                break;
+            case 2:
+                formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                break;
+            case 3:
+                formatter = new SimpleDateFormat("yyyy-MM-dd");
+                break;
+            case 4:
+                formatter = new SimpleDateFormat("yyyy年MM月");
+                break;
+        }
+        if (formatter == null) {
+            formatter = new SimpleDateFormat("yyyy-MM-dd");
+        }
+        if (!TextUtils.isEmpty(time)) {
+            try {
+                return formatter.parse(time);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return new Date(System.currentTimeMillis());
+    }
+
+    public static Calendar getCalendarByStringTime(int flag, String time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(getDateByStringTime(flag, time));
+        return calendar;
     }
 
     public static long getTimeMillisByString(int flag, String srcTime) {
@@ -79,7 +118,7 @@ public class TimeUitls {
      * @return
      */
     public static String getTimestampToCurrentTime(int flag, String endTime) {
-        if (AndroidUtil.judgeStringIsNull(endTime)) {
+        if (StringUtils.judgeStringIsNull(endTime)) {
             return "";
         }
         long endTimeMillis = getTimeMillisByString(flag, endTime);
@@ -110,7 +149,7 @@ public class TimeUitls {
      * @return endTimeMillis - startTimeMillis（大于0：结束时间大于开始时间）
      */
     public static long getTimestamp(int flag, String endTime, String startTime) {
-        if (AndroidUtil.judgeStringIsNull(startTime) || AndroidUtil.judgeStringIsNull(endTime)) {
+        if (StringUtils.judgeStringIsNull(startTime) || StringUtils.judgeStringIsNull(endTime)) {
             return 0;
         }
         long endTimeMillis = getTimeMillisByString(flag, endTime);

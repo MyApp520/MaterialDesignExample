@@ -14,6 +14,7 @@
     <color name="tab_checked">#FF4081</color>
     <color name="tab_unchecked">#3F51B5</color>
     <color name="backgroup">#12b7f5</color>
+    <color name="backgroup_select">#3F51B5</color>
     <color name="common_green">#16BC49</color>
     <color name="char_text_color">#e56ebc</color>
     <color name="chart_grid_line_color">#c0c0c0</color>
@@ -45,4 +46,6 @@
     <color name="transparent_gray">#90000000</color>
     <color name="orange">#FFE8A140</color>
     <color name="green">#83d383</color>
+    <color name="chart_grid_line_color">#f4f4f4</color>
+    <color name="default_hint_color">#999999</color>
 </resources>

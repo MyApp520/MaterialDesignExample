@@ -17,7 +17,7 @@
             android:gravity="left|center_vertical"
             android:paddingLeft="@dimen/pickerview_topbar_padding"
             android:text="@string/pickerview_cancel"
-            android:textColor="@color/insideCircle"
+            android:textColor="@color/default_hint_color"
             android:textSize="@dimen/pickerview_topbar_btn_textsize" />
 
 

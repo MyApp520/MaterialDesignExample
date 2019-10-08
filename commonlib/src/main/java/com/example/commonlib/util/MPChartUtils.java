@@ -4,8 +4,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
+import androidx.core.content.ContextCompat;
 
 import com.example.commonlib.R;
 import com.example.commonlib.mpandroidchart.LineChartMarkView;
@@ -48,11 +47,11 @@ public class MPChartUtils {
     private static final String TAG = MPChartUtils.class.getSimpleName();
 
     /**
-     * 不显示无数据的提示
+     * 显示无数据的提示
      *
      * @param mChart
      */
-    public static void NotShowNoDataText(Chart mChart) {
+    public static void showNoDataText(Chart mChart) {
         mChart.clear();
         mChart.notifyDataSetChanged();
         mChart.setNoDataText("你还没有记录数据");

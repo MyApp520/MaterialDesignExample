@@ -9,8 +9,6 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -1078,7 +1079,11 @@ public class BaiDuMapTrackActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        map.onDestroy();
-        timer.cancel();
+        try {
+            map.onDestroy();
+            timer.cancel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -11,6 +11,7 @@ import org.smile.mde.ui.activity.BaiDuMapTrackActivity;
 import org.smile.mde.ui.activity.ConstraintLayoutActivity;
 import org.smile.mde.ui.activity.ToolBarActivity;
 import org.smile.mde.ui.activity.TwoRecyclerViewActivity;
+import org.smile.mde.ui.activity.customize.CustomizeChartActivity;
 import org.smile.mde.ui.activity.design.CoordinatorLayoutActivity;
 import org.smile.mde.ui.activity.mpandroidchart.MPAndroidChartActivity;
 import org.smile.mde.view.SecondPTZCircleControlView;
@@ -46,13 +47,14 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
         return false;
     }
 
-    @OnClick({R.id.btn_face_rect, R.id.btn_two_recycler_view, R.id.btn_toolbar, R.id.btn_CoordinatorLayout, R.id.btn_ConstraintLayout, R.id.btn_mpandroidchart})
+    @OnClick({R.id.btn_face_rect, R.id.btn_two_recycler_view, R.id.btn_toolbar, R.id.btn_CoordinatorLayout, R.id.btn_ConstraintLayout,
+            R.id.btn_mpandroidchart, R.id.btn_customize_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_face_rect:
 //                startActivity(new Intent(this, FaceRectActivity.class));
 //                startActivity(new Intent(this, AMapActivity.class));//高德地图
-                startActivity(new Intent(this, BaiDuMapTrackActivity.class));//百度地图
+                startActivity(new Intent(this, BaiDuMapTrackActivity.class));//百度地图绘制运动轨迹
                 break;
             case R.id.btn_two_recycler_view:
                 startActivity(new Intent(this, TwoRecyclerViewActivity.class));
@@ -68,6 +70,9 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
                 break;
             case R.id.btn_mpandroidchart:
                 startActivity(new Intent(this, MPAndroidChartActivity.class));
+                break;
+            case R.id.btn_customize_view:
+                startActivity(new Intent(this, CustomizeChartActivity.class));
                 break;
             default:
                 break;

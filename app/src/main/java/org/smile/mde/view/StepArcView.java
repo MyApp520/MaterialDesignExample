@@ -17,10 +17,11 @@ import android.graphics.RectF;
 import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 import org.smile.mde.R;
 

@@ -4,12 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.example.commonlib.R;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 /**
  * Created by smile on 2019/4/28.
@@ -54,7 +55,7 @@ public class BaseFullBottomSheetFragment extends BottomSheetDialogFragment {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         }
         BottomSheetDialog dialog = (BottomSheetDialog) getDialog();
-        FrameLayout bottomSheet = dialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = dialog.getDelegate().findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomSheet.getLayoutParams();
             layoutParams.height = getHeight();
