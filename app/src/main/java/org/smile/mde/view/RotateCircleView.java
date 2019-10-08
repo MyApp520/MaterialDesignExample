@@ -171,6 +171,7 @@ public class RotateCircleView extends View {
         mRegionMap.clear();
         Path path;
         int startAngle = 180;
+        int endAngle;
         for (int i = 0; i < addressArray.length; i++) {
             path = new Path();
             path.addArc(mScaleLineArcRectF, startAngle, addressArray[i].length() * 8);

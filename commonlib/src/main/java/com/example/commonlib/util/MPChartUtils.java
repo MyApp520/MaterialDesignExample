@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.text.TextUtils;
+
 import androidx.core.content.ContextCompat;
 
 import com.example.commonlib.R;

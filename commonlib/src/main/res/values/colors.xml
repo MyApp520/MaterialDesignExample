@@ -17,7 +17,6 @@
     <color name="backgroup_select">#3F51B5</color>
     <color name="common_green">#16BC49</color>
     <color name="char_text_color">#e56ebc</color>
-    <color name="chart_grid_line_color">#c0c0c0</color>
 
     <color name="GREEN">#FF00FF00</color>
     <color name="RED">#FFFF0000</color>
@@ -39,7 +38,6 @@
     <color name="outsideBlue">#2690f8</color>
     <color name="insideBlue">#58ade5</color>
     <color name="insideCircle">#c2b9b0</color>
-    <color name="default_hint_color">#c2b9b0</color>
 
 
     <color name="blue">#2A8EE3</color>
