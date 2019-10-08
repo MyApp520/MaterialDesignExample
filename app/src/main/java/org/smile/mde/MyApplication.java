@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.example.commonlib.base.BaseApplication;
 import com.example.commonlib.bean.UserBean;
 import com.example.commonlib.util.AppDebugUtil;
