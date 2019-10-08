@@ -59,6 +59,7 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
+    api rootProject.ext.dependencies["multidex"]
     api rootProject.ext.dependencies["annotations"]
     api rootProject.ext.dependencies["multidex"]
     api rootProject.ext.dependencies["recyclerview-v7"]

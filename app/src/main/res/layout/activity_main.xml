@@ -67,6 +67,20 @@
                 android:layout_marginTop="8dp"
                 android:text="Customize View 的使用" />
 
+            <Button
+                android:id="@+id/btn_audio_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="btn_audio_video 的使用" />
+
+            <Button
+                android:id="@+id/btn_bluetooth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Bluetooth 的使用" />
+
             <org.smile.mde.view.SecondPTZCircleControlView
                 android:id="@+id/ptz_control_view"
                 android:layout_width="100dp"
