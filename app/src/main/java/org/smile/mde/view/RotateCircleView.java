@@ -2,6 +2,7 @@ package org.smile.mde.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -27,6 +28,8 @@ public class RotateCircleView extends View {
 
     private final String TAG = getClass().getSimpleName();
     private Context mContext;
+    private Paint mArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private int[] sectorColor = new int[]{Color.parseColor("#EE82EE"), Color.parseColor("#FFDEAD")};
 
     private int mViewWidth, mViewHeight;
     private int centerX, centerY;
@@ -48,6 +51,9 @@ public class RotateCircleView extends View {
     private Paint mScalePaint;
     private Paint mBackgroundRoundPaint;
 
+    /**
+     * "军队", "陆军", "航空兵", "古田", "大型机场", "坦克", "护卫舰"
+     */
     private String[] addressArray = {"军队", "陆军", "航空兵", "古田", "大型机场", "坦克", "护卫舰"};
     /**
      * 保存path路径所表示的区域region
@@ -97,7 +103,7 @@ public class RotateCircleView extends View {
         mTextPaint.setStrokeWidth(6);
 
         mScaleLineLength = UIUtils.dp2px(mContext, 8);
-        setPadding(getLeft(), (int) (getTop() + 2.5 * mScaleLineLength), getRight(), (int) (getBottom() + 2.5 * mScaleLineLength));
+        setPadding(getLeft(), (int) (getTop() + 3 * mScaleLineLength), getRight(), (int) (getBottom() + 3 * mScaleLineLength));
     }
 
     @Override
@@ -161,56 +167,62 @@ public class RotateCircleView extends View {
 
     private void drawRoundScale2(Canvas canvas) {
         for (int angle = 0; angle < 360; angle += 6) {
-            canvas.drawLine(getArcPointX(angle, mViewRadius - mScaleLineLength / 2)
-                    , getArcPointY(angle, mViewRadius - mScaleLineLength / 2)
-                    , getArcPointX(angle, mViewRadius + mScaleLineLength / 2)
-                    , getArcPointY(angle, mViewRadius + mScaleLineLength / 2)
+            canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
+                    , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
+                    , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
+                    , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
                     , mScalePaint);
         }
 
         mRegionMap.clear();
         Path path;
         int startAngle = 180;
-        int endAngle;
+        int textSpaceAngle = 30;//文本标签之间间隔的角度
         for (int i = 0; i < addressArray.length; i++) {
             path = new Path();
             path.addArc(mScaleLineArcRectF, startAngle, addressArray[i].length() * 8);
-            canvas.drawTextOnPath(addressArray[i], path, 0, mScaleLineLength / 2, mTextPaint);
-            startAngle += addressArray[i].length() * 8 + 30;
+            canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 1.5), mTextPaint);
+            startAngle += addressArray[i].length() * 8 + textSpaceAngle;
             addRegion(i, path);
         }
     }
 
     private void drawRoundScale(Canvas canvas) {
-//        for (int angle = 0; angle < 360; angle += 6) {
-//        canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
-//                , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
-//                , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
-//                , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
-//                , mScalePaint);
-//        }
-
         mRegionMap.clear();
         Path path;
         int startAngle = 180;
         int endAngle;
-        int textSpaceAngle = 30;//文本标签之间间隔的角度
+        int textSpaceAngle = 20;//文本标签之间间隔的角度
         for (int i = 0; i < addressArray.length; i++) {
+            // 一个文本标签所占用的角度
+            int sweepAngle = addressArray[i].length() * 9;
+            // 扇形的弧长 = 2πr×角度/360 = πr×角度/180
+            float arcLength = (float) (Math.PI * mViewRadius * sweepAngle / 180);
+            // 测量文字的宽度
+            float textWidth = mTextPaint.measureText(addressArray[i]);
+            // 水平偏移
+            int hOffset = (int) (arcLength / 2 - textWidth / 2);
+            // 计算文字的路径
             path = new Path();
-            path.addArc(mScaleLineArcRectF, startAngle, addressArray[i].length() * 8);
-            canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 2.5), mTextPaint);
-            startAngle += addressArray[i].length() * 8;
+            path.addArc(mScaleLineArcRectF, startAngle, sweepAngle);
             addRegion(i, path);
+            // 测试画扇形
+            mArcPaint.setColor(sectorColor[i % 2]);
+            canvas.drawArc(mScaleLineArcRectF, startAngle, sweepAngle, true, mArcPaint);
+            // 开始绘制文字
+            canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 1.5), mTextPaint);
 
-            endAngle = startAngle + textSpaceAngle + 3;
-            for (int angle = startAngle; angle < endAngle; angle += 6) {
+            // 绘制刻度线
+            startAngle = startAngle + sweepAngle;
+            endAngle = startAngle + textSpaceAngle;
+            for (int angle = startAngle; angle < endAngle; angle += 3) {
                 canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
                         , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
                         , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
                         , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
                         , mScalePaint);
             }
-            startAngle = endAngle + 3;
+            startAngle = endAngle;
         }
     }
 
