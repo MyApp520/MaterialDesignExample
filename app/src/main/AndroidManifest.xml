@@ -47,7 +47,11 @@
         <activity android:name=".ui.activity.AMapActivity" />
         <activity android:name=".ui.activity.design.Demo4Activity" />
         <activity android:name=".ui.activity.BaiDuMapTrackActivity" />
+        <activity android:name=".ui.activity.bluetooth.BluetoothActivity" />
         <activity android:name=".ui.activity.customize.CustomizeChartActivity" />
+        <activity
+            android:name=".ui.activity.audio_video.PlayVoiceActivity"
+            android:label="@string/title_activity_play_voice" />
 
         <!-- 高德地图 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
@@ -56,11 +60,7 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
-
-        <activity
-            android:name=".ui.activity.audio_video.PlayVoiceActivity"
-            android:label="@string/title_activity_play_voice"></activity>
+            android:process=":remote" />
         <!-- 百度地图 定位需要的服务 -->
         <service android:name="com.baidu.location.f"
             android:enabled="true"
