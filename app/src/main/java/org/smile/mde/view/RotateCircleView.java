@@ -159,7 +159,7 @@ public class RotateCircleView extends View {
         canvas.drawArc(mOuterArcRectF, 0, 360, false, mBackgroundRoundPaint);
     }
 
-    private void drawRoundScale(Canvas canvas) {
+    private void drawRoundScale2(Canvas canvas) {
         for (int angle = 0; angle < 360; angle += 6) {
             canvas.drawLine(getArcPointX(angle, mViewRadius - mScaleLineLength / 2)
                     , getArcPointY(angle, mViewRadius - mScaleLineLength / 2)
@@ -178,6 +178,39 @@ public class RotateCircleView extends View {
             canvas.drawTextOnPath(addressArray[i], path, 0, mScaleLineLength / 2, mTextPaint);
             startAngle += addressArray[i].length() * 8 + 30;
             addRegion(i, path);
+        }
+    }
+
+    private void drawRoundScale(Canvas canvas) {
+//        for (int angle = 0; angle < 360; angle += 6) {
+//        canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
+//                , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
+//                , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
+//                , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
+//                , mScalePaint);
+//        }
+
+        mRegionMap.clear();
+        Path path;
+        int startAngle = 180;
+        int endAngle;
+        int textSpaceAngle = 30;//文本标签之间间隔的角度
+        for (int i = 0; i < addressArray.length; i++) {
+            path = new Path();
+            path.addArc(mScaleLineArcRectF, startAngle, addressArray[i].length() * 8);
+            canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 2.5), mTextPaint);
+            startAngle += addressArray[i].length() * 8;
+            addRegion(i, path);
+
+            endAngle = startAngle + textSpaceAngle + 3;
+            for (int angle = startAngle; angle < endAngle; angle += 6) {
+                canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
+                        , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
+                        , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
+                        , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
+                        , mScalePaint);
+            }
+            startAngle = endAngle + 3;
         }
     }
 

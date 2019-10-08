@@ -4,7 +4,6 @@
     package="org.smile.mde">
 
     <application
-        android:usesCleartextTraffic="true"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -13,14 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-
         <!-- 百度地图 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="OFC2bSoS91TPT02SHGBtKOhGRhLon0f2" >
-        </meta-data>
+            android:value="OFC2bSoS91TPT02SHGBtKOhGRhLon0f2" />
         <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -50,21 +48,19 @@
         <activity android:name=".ui.activity.bluetooth.BluetoothActivity" />
         <activity android:name=".ui.activity.customize.CustomizeChartActivity" />
         <activity
+            android:name=".ui.activity.customize.RotateCircleActivity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".ui.activity.audio_video.PlayVoiceActivity"
             android:label="@string/title_activity_play_voice" />
 
         <!-- 高德地图 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
-
-        <!-- 声明service组件 -->
+        <!-- 百度地图 定位需要的服务 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
-        <!-- 百度地图 定位需要的服务 -->
-        <service android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote"/>
     </application>
 
 </manifest>

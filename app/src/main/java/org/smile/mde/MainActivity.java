@@ -26,7 +26,7 @@ import org.smile.mde.ui.activity.ToolBarActivity;
 import org.smile.mde.ui.activity.TwoRecyclerViewActivity;
 import org.smile.mde.ui.activity.audio_video.PlayVoiceActivity;
 import org.smile.mde.ui.activity.bluetooth.BluetoothActivity;
-import org.smile.mde.ui.activity.customize.CustomizeChartActivity;
+import org.smile.mde.ui.activity.customize.RotateCircleActivity;
 import org.smile.mde.ui.activity.design.CoordinatorLayoutActivity;
 import org.smile.mde.ui.activity.mpandroidchart.MPAndroidChartActivity;
 import org.smile.mde.view.SecondPTZCircleControlView;
@@ -100,7 +100,8 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
                 startActivity(new Intent(this, MPAndroidChartActivity.class));
                 break;
             case R.id.btn_customize_view:
-                startActivity(new Intent(this, CustomizeChartActivity.class));
+//                startActivity(new Intent(this, CustomizeChartActivity.class));
+                startActivity(new Intent(this, RotateCircleActivity.class));
                 break;
             case R.id.btn_audio_video:
                 startActivity(new Intent(this, PlayVoiceActivity.class));
