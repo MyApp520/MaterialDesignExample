@@ -76,7 +76,7 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
     }
 
     @OnClick({R.id.btn_face_rect, R.id.btn_two_recycler_view, R.id.btn_toolbar, R.id.btn_CoordinatorLayout, R.id.btn_ConstraintLayout,
-            R.id.btn_mpandroidchart, R.id.btn_audio_video, R.id.btn_bluetooth})
+            R.id.btn_mpandroidchart, R.id.btn_customize_view, R.id.btn_audio_video, R.id.btn_bluetooth})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_face_rect:
