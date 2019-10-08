@@ -484,6 +484,7 @@ public class BluetoothActivity extends BaseActivity {
      * mBluetoothLeScanner.startScan(scanCallback)的方式搜索蓝牙的回调结果
      * BluetoothLeScanner的方式会一直搜索，需要手动调用stopScan后才会停止搜索；
      */
+    @SuppressLint("NewApi")
     private ScanCallback scanCallback = new ScanCallback() {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
