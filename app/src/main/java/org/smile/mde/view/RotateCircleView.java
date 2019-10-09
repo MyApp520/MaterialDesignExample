@@ -169,9 +169,9 @@ public class RotateCircleView extends View {
         mRegionMap.clear();
         // 画圆弧刻度线时，一个刻度所占的角度
         int theAngleOfOneScale = 3;
-        Path path;
         int startAngle = 180 - 2 * theAngleOfOneScale;
         int endAngle;
+        Path path;
         // 绘制的时候，分阶段绘制，分成addressArray.length个阶段
         for (int i = 0; i < addressArray.length; i++) {
             // 一个文本标签所占用的角度
@@ -190,7 +190,8 @@ public class RotateCircleView extends View {
             mArcPaint.setColor(sectorColor[i % 2]);
             canvas.drawArc(mScaleLineArcRectF, startAngle, sweepAngle, true, mArcPaint);
             // 开始绘制文字
-            canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 1.5), mTextPaint);
+            // mTextPaint.setTextAlign(Paint.Align.CENTER);这一点很重要，直接影响到startAngle和endAngle是否需要增加theAngleOfOneScale
+            canvas.drawTextOnPath(addressArray[i], path, 0, mScaleLineLength / 1.5f, mTextPaint);
 
             // 每个阶段绘制刻度线时：对应的起始角度，之所以加theAngleOfOneScale，是为了间隔文字和刻度线，免得挨在一起不好看
             startAngle = startAngle + sweepAngle + theAngleOfOneScale;
@@ -198,10 +199,10 @@ public class RotateCircleView extends View {
             endAngle = startAngle + 7 * theAngleOfOneScale;
             // 开始绘制刻度线
             for (int angle = startAngle; angle < endAngle; angle += theAngleOfOneScale) {
-                canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
-                        , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
-                        , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
-                        , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
+                canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5f))
+                        , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5f))
+                        , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5f))
+                        , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5f))
                         , mScalePaint);
             }
             startAngle = endAngle;
