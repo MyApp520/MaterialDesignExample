@@ -165,37 +165,17 @@ public class RotateCircleView extends View {
         canvas.drawArc(mOuterArcRectF, 0, 360, false, mBackgroundRoundPaint);
     }
 
-    private void drawRoundScale2(Canvas canvas) {
-        for (int angle = 0; angle < 360; angle += 6) {
-            canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
-                    , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
-                    , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
-                    , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
-                    , mScalePaint);
-        }
-
-        mRegionMap.clear();
-        Path path;
-        int startAngle = 180;
-        int textSpaceAngle = 30;//文本标签之间间隔的角度
-        for (int i = 0; i < addressArray.length; i++) {
-            path = new Path();
-            path.addArc(mScaleLineArcRectF, startAngle, addressArray[i].length() * 8);
-            canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 1.5), mTextPaint);
-            startAngle += addressArray[i].length() * 8 + textSpaceAngle;
-            addRegion(i, path);
-        }
-    }
-
     private void drawRoundScale(Canvas canvas) {
         mRegionMap.clear();
+        // 画圆弧刻度线时，一个刻度所占的角度
+        int theAngleOfOneScale = 3;
         Path path;
-        int startAngle = 180;
+        int startAngle = 180 - 2 * theAngleOfOneScale;
         int endAngle;
-        int textSpaceAngle = 20;//文本标签之间间隔的角度
+        // 绘制的时候，分阶段绘制，分成addressArray.length个阶段
         for (int i = 0; i < addressArray.length; i++) {
             // 一个文本标签所占用的角度
-            int sweepAngle = addressArray[i].length() * 9;
+            int sweepAngle = addressArray[i].length() * 3 * theAngleOfOneScale;
             // 扇形的弧长 = 2πr×角度/360 = πr×角度/180
             float arcLength = (float) (Math.PI * mViewRadius * sweepAngle / 180);
             // 测量文字的宽度
@@ -212,10 +192,12 @@ public class RotateCircleView extends View {
             // 开始绘制文字
             canvas.drawTextOnPath(addressArray[i], path, 0, (float) (mScaleLineLength / 1.5), mTextPaint);
 
-            // 绘制刻度线
-            startAngle = startAngle + sweepAngle;
-            endAngle = startAngle + textSpaceAngle;
-            for (int angle = startAngle; angle < endAngle; angle += 3) {
+            // 每个阶段绘制刻度线时：对应的起始角度，之所以加theAngleOfOneScale，是为了间隔文字和刻度线，免得挨在一起不好看
+            startAngle = startAngle + sweepAngle + theAngleOfOneScale;
+            // 每个阶段绘制刻度线时：对应的终止角度（7 * theAngleOfOneScale表示该阶段刻度线占用的角度）
+            endAngle = startAngle + 7 * theAngleOfOneScale;
+            // 开始绘制刻度线
+            for (int angle = startAngle; angle < endAngle; angle += theAngleOfOneScale) {
                 canvas.drawLine(getArcPointX(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
                         , getArcPointY(angle, (int) (mViewRadius - mScaleLineLength / 2.5))
                         , getArcPointX(angle, (int) (mViewRadius + mScaleLineLength / 2.5))
