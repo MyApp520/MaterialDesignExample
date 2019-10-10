@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.text.TextPaint;
@@ -38,10 +39,12 @@ public class RotateCircleView extends View {
      * 用于定义最外面那个圆弧的形状和大小的界限
      */
     private RectF mOuterArcRectF = new RectF();
+
     /**
      * 用于定义刻度线组成的圆弧的形状和大小的界限
      */
     private RectF mScaleLineArcRectF = new RectF();
+
     /**
      * 刻度线的长度
      */
@@ -55,14 +58,40 @@ public class RotateCircleView extends View {
      * "军队", "陆军", "航空兵", "古田", "大型机场", "坦克", "护卫舰"
      */
     private String[] addressArray = {"军队", "陆军", "航空兵", "古田", "大型机场", "坦克", "护卫舰"};
+
     /**
      * 保存path路径所表示的区域region
      */
-    private Map<Integer, Region> mRegionMap = new HashMap<>();
+    private Map<Integer, Region> mRegionMap;
+
     /**
      * 手指点击位置的坐标
      */
-    private float downX, downY;
+    private float downX, downY, lastTouchX, lastTouchY;
+
+    /**
+     * 中心坐标
+     */
+    private Point mCenterPoint;
+
+    /**
+     * 手指开始触摸屏幕时，所接触的那个点的坐标
+     */
+    private Point mStartTouchPoint;
+
+    /**
+     * 手指开始触摸屏幕开始移动，在屏幕上移动时手指所在点位的坐标
+     */
+    private Point mEndTouchPoint;
+
+    /**
+     * 默认旋转的角度
+     */
+    private final float DEFAULT_ROTATION_DEGREE = 0;
+    /**
+     * 控件的旋转角度
+     */
+    private float mRotationDegree = DEFAULT_ROTATION_DEGREE;
 
     public RotateCircleView(Context context) {
         super(context);
@@ -102,8 +131,13 @@ public class RotateCircleView extends View {
         mTextPaint.setAntiAlias(true);
         mTextPaint.setStrokeWidth(6);
 
+        mRegionMap = new HashMap<>();
         mScaleLineLength = UIUtils.dp2px(mContext, 8);
         setPadding(getLeft(), (int) (getTop() + 3 * mScaleLineLength), getRight(), (int) (getBottom() + 3 * mScaleLineLength));
+
+        mCenterPoint = new Point();
+        mStartTouchPoint = new Point();
+        mEndTouchPoint = new Point();
     }
 
     @Override
@@ -114,6 +148,7 @@ public class RotateCircleView extends View {
         centerX = mViewWidth / 2;
         centerY = mViewHeight / 2;
         mViewRadius = Math.min(mViewWidth - getPaddingLeft() - getPaddingRight(), mViewHeight - getPaddingTop() - getPaddingBottom()) / 2;
+        mCenterPoint.set(centerX, centerY);
     }
 
     @Override
@@ -131,12 +166,21 @@ public class RotateCircleView extends View {
             case MotionEvent.ACTION_DOWN:
                 downX = event.getX();
                 downY = event.getY();
+                lastTouchX = (int) event.getRawX();
+                lastTouchY = (int) event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
+                mStartTouchPoint.set((int) lastTouchX, (int) lastTouchY);
+                mEndTouchPoint.set((int) event.getRawX(), (int) event.getRawY());
+                mRotationDegree += angle(mCenterPoint, mStartTouchPoint, mEndTouchPoint);
+
+                // 开始旋转控件
+                setRotation(mRotationDegree);
+                lastTouchX = (int) event.getRawX();
+                lastTouchY = (int) event.getRawY();
                 break;
             case MotionEvent.ACTION_UP:
                 performClick();
-                setRotation(-45f);
                 break;
         }
         Log.e(TAG, "onTouchEvent: 触摸事件 event.getAction() = " + event.getAction() + ", " + getRotation());
@@ -257,18 +301,45 @@ public class RotateCircleView extends View {
         }
     }
 
-    private Paint generatePaint(int color, Paint.Style style, int width) {
-        Paint paint = new Paint();
-        paint.setColor(color);
-        paint.setStyle(style);
-        paint.setStrokeWidth(width);
-        return paint;
+    /**
+     * 计算控件的旋转角度
+     *
+     * @param centerPoint
+     * @param startPoint
+     * @param endPoint
+     * @return
+     */
+    public float angle(Point centerPoint, Point startPoint, Point endPoint) {
+        float dx1, dx2, dy1, dy2;
+
+        dx1 = startPoint.x - centerPoint.x;
+        dy1 = startPoint.y - centerPoint.y;
+        dx2 = endPoint.x - centerPoint.x;
+        dy2 = endPoint.y - centerPoint.y;
+
+        // 计算三边的平方
+        float ab2 = (endPoint.x - startPoint.x) * (endPoint.x - startPoint.x) + (endPoint.y - startPoint.y) * (endPoint.y - startPoint.y);
+        float oa2 = dx1 * dx1 + dy1 * dy1;
+        float ob2 = dx2 * dx2 + dy2 * dy2;
+
+        // 根据两向量的叉乘来判断顺逆时针
+        boolean isClockwise = ((startPoint.x - centerPoint.x) * (endPoint.y - centerPoint.y)
+                - (startPoint.y - centerPoint.y) * (endPoint.x - centerPoint.x)) > 0;
+
+        // 根据余弦定理计算旋转角的余弦值
+        double cosDegree = (oa2 + ob2 - ab2) / (2 * Math.sqrt(oa2) * Math.sqrt(ob2));
+
+        // 异常处理，因为算出来会有误差绝对值可能会超过一，所以需要处理一下
+        if (cosDegree > 1) {
+            cosDegree = 1;
+        } else if (cosDegree < -1) {
+            cosDegree = -1;
+        }
+
+        // 计算弧度
+        double radian = Math.acos(cosDegree);
+
+        // 计算旋转过的角度，顺时针为正，逆时针为负
+        return (float) (isClockwise ? Math.toDegrees(radian) : -Math.toDegrees(radian));
     }
 }
-//RectF(270.0, 255.57793, 280.45935, 330.0)
-//RectF(352.44226, 91.60416, 413.24265, 135.77824)
-//RectF(549.4228, 60.16446, 658.36017, 87.32559)
-//RectF(763.8401, 179.01785, 796.7853, 246.56543)
-//RectF(734.22174, 386.13614, 804.09985, 517.5578)
-//RectF(540.0, 589.54065, 614.4221, 600.0)
-//RectF(321.56546, 488.70206, 404.99994, 563.82684)
