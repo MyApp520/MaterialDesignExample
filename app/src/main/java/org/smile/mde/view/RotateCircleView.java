@@ -125,17 +125,21 @@ public class RotateCircleView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.e(TAG, "onTouchEvent: 触摸事件 event.getAction() = " + event.getAction());
+        Log.e(TAG, "onTouchEvent: 触摸事件 event.getAction() = " + event.getAction() + ", " + getRotation());
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downX = event.getX();
                 downY = event.getY();
                 break;
+            case MotionEvent.ACTION_MOVE:
+                break;
             case MotionEvent.ACTION_UP:
                 performClick();
+                setRotation(-45f);
                 break;
         }
+        Log.e(TAG, "onTouchEvent: 触摸事件 event.getAction() = " + event.getAction() + ", " + getRotation());
         return true;
     }
 
@@ -205,6 +209,7 @@ public class RotateCircleView extends View {
                         , getArcPointY(angle, (int) (mViewRadius + mScaleLineLength / 2.5f))
                         , mScalePaint);
             }
+            // 下一阶段的起始角度就是上一个阶段的终止角度
             startAngle = endAngle;
         }
     }
