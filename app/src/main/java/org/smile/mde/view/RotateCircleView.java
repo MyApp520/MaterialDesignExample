@@ -172,7 +172,8 @@ public class RotateCircleView extends View {
             case MotionEvent.ACTION_MOVE:
                 mStartTouchPoint.set((int) lastTouchX, (int) lastTouchY);
                 mEndTouchPoint.set((int) event.getRawX(), (int) event.getRawY());
-                mRotationDegree += angle(mCenterPoint, mStartTouchPoint, mEndTouchPoint);
+                // 控件旋转的角度
+                mRotationDegree += calculateTheAngleOfRotation(mCenterPoint, mStartTouchPoint, mEndTouchPoint);
 
                 // 开始旋转控件
                 setRotation(mRotationDegree);
@@ -302,14 +303,14 @@ public class RotateCircleView extends View {
     }
 
     /**
-     * 计算控件的旋转角度
+     * 计算控件旋转的角度
      *
      * @param centerPoint
      * @param startPoint
      * @param endPoint
      * @return
      */
-    public float angle(Point centerPoint, Point startPoint, Point endPoint) {
+    public float calculateTheAngleOfRotation(Point centerPoint, Point startPoint, Point endPoint) {
         float dx1, dx2, dy1, dy2;
 
         dx1 = startPoint.x - centerPoint.x;
