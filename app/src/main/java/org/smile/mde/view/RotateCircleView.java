@@ -67,7 +67,7 @@ public class RotateCircleView extends View {
     /**
      * 手指点击位置的坐标
      */
-    private float downX, downY, lastTouchX, lastTouchY;
+    private float actionDownX, actionDownY, lastTouchX, lastTouchY;
 
     /**
      * 中心坐标
@@ -164,8 +164,8 @@ public class RotateCircleView extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                downX = event.getX();
-                downY = event.getY();
+                actionDownX = event.getX();
+                actionDownY = event.getY();
                 lastTouchX = (int) event.getRawX();
                 lastTouchY = (int) event.getRawY();
                 break;
@@ -192,7 +192,7 @@ public class RotateCircleView extends View {
     public boolean performClick() {
         for (Map.Entry<Integer, Region> entry : mRegionMap.entrySet()) {
             //通过region的contains方法判断点击位置的坐标位于哪个圆环的区域内
-            if (entry.getValue().contains((int) downX, (int) downY)) {
+            if (entry.getValue().contains((int) actionDownX, (int) actionDownY)) {
                 ShowToast.showToast(mContext, "点击的是：" + addressArray[entry.getKey()]);
             }
         }
