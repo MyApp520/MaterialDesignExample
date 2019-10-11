@@ -57,7 +57,7 @@ public class RotateCircleView extends View {
     /**
      * "军队", "陆军", "航空兵", "古田", "大型机场", "坦克", "护卫舰"
      */
-    private String[] addressArray = {"军队", "陆军", "航空兵", "古田", "大型机场", "坦克", "护卫舰"};
+    private String[] addressArray = {"军队"};
 
     /**
      * 保存path路径所表示的区域region
@@ -89,9 +89,13 @@ public class RotateCircleView extends View {
      */
     private final float DEFAULT_ROTATION_DEGREE = 0;
     /**
-     * 控件的旋转角度
+     * 控件总共旋转的角度
      */
-    private float mRotationDegree = DEFAULT_ROTATION_DEGREE;
+    private float mTotalRotationDegree = DEFAULT_ROTATION_DEGREE;
+    /**
+     * 手指滑动一次，控件旋转的角度
+     */
+    private float mOnceTouchRotationDegree = DEFAULT_ROTATION_DEGREE;
 
     public RotateCircleView(Context context) {
         super(context);
@@ -173,10 +177,13 @@ public class RotateCircleView extends View {
                 mStartTouchPoint.set((int) lastTouchX, (int) lastTouchY);
                 mEndTouchPoint.set((int) event.getRawX(), (int) event.getRawY());
                 // 控件旋转的角度
-                mRotationDegree += calculateTheAngleOfRotation(mCenterPoint, mStartTouchPoint, mEndTouchPoint);
-
+                mOnceTouchRotationDegree = calculateTheAngleOfRotation(mCenterPoint, mStartTouchPoint, mEndTouchPoint);
                 // 开始旋转控件
-                setRotation(mRotationDegree);
+                mTotalRotationDegree += mOnceTouchRotationDegree;
+                Log.e(TAG, "旋转角度：mTotalRotationDegree = " + mTotalRotationDegree
+                        + ", mOnceTouchRotationDegree = " + mOnceTouchRotationDegree
+                        + ", getRotation = " + getRotation());
+                startRotation();
                 lastTouchX = (int) event.getRawX();
                 lastTouchY = (int) event.getRawY();
                 break;
@@ -190,9 +197,13 @@ public class RotateCircleView extends View {
 
     @Override
     public boolean performClick() {
+        Region region;
         for (Map.Entry<Integer, Region> entry : mRegionMap.entrySet()) {
+            region = entry.getValue();
+            Log.e(TAG, "(actionDownX, actionDownY) = (" + (int) actionDownX + " ," + (int) actionDownY + ")"
+                    + " 不规则区域 getBoundsRect = " + region.getBounds() + ", region = " + region);
             //通过region的contains方法判断点击位置的坐标位于哪个圆环的区域内
-            if (entry.getValue().contains((int) actionDownX, (int) actionDownY)) {
+            if (region.getBounds().contains((int) actionDownX, (int) actionDownY)) {
                 ShowToast.showToast(mContext, "点击的是：" + addressArray[entry.getKey()]);
             }
         }
@@ -218,7 +229,7 @@ public class RotateCircleView extends View {
         mRegionMap.clear();
         // 画圆弧刻度线时，一个刻度所占的角度
         int theAngleOfOneScale = 3;
-        int startAngle = 180 - 2 * theAngleOfOneScale;
+        int startAngle = 270 - 2 * theAngleOfOneScale;
         int endAngle;
         Path path;
         // 绘制的时候，分阶段绘制，分成addressArray.length个阶段
@@ -256,6 +267,16 @@ public class RotateCircleView extends View {
             }
             // 下一阶段的起始角度就是上一个阶段的终止角度
             startAngle = endAngle;
+        }
+    }
+
+    private void startRotation() {
+        if (getRotation() < 0) {
+            ShowToast.showToast(mContext, "已经转到---开始---位置了");
+        } else if (getRotation() > 360) {
+            ShowToast.showToast(mContext, "已经转到---结束---位置了");
+        } else {
+            setRotation(mTotalRotationDegree);
         }
     }
 
