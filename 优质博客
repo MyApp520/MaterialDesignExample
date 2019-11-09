@@ -1,1 +1,27 @@
+
 1、仿滴滴出行打车APP界面 增加RFID认证、海外版、司机证件号码识别功能；项目源码地址：https://github.com/18601949127
+
+2、https://github.com/Dsiner/UIUtil/blob/master/lib_layout/src/main/java/com/d/lib/ui/layout/poi/PoiLayout.java
+    仿地图拖动弹出框覆盖地图界面功能；
+
+3、☆☆☆☆☆ https://github.com/Dsiner/UIUtil
+
+4、https://github.com/yanzhenjie/SwipeRecyclerView
+    特性：
+        Item侧滑菜单，支持水平分布、垂直分布
+        Item长按拖拽、侧滑删除
+        添加/移除HeaderView/FooterView
+        自动/点击加载更多的功能
+        支持二级列表，List形式、Grid形式、Staggered形式
+        Sticky普通布局黏贴和RecyclerView分组黏贴
+        支持AndroidX
+
+5、☆☆☆☆☆ https://github.com/luckybilly/SmartSwipe
+    https://qibilly.com/SmartSwipe-tutorial/ 使用文档
+    特点：
+        1、RecyclerView刷新，item侧滑以及其他针对item的特效功能；
+        2、侧边栏功能；
+        3、全局只需一行代码即可搞定Activity侧滑返回的各种效果(侧滑返回或者按返回键返回都有动画)，各种方式的都有，建议下载该app体验；
+        4、用于制作封面：开门样式	百叶窗样式 抽屉样式
+
+6、☆☆☆☆☆ https://blog.csdn.net/briblue/article/details/73730386  神奇的ViewDragHelper，让你轻松定制拥有拖拽能力的控件
