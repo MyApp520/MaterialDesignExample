@@ -1,0 +1,10 @@
+1、Drawable分类:
+  分类	            xml标签	                    功能
+  ColorDrawable	    color	                    纯色Drawable
+  RotateDrawable	rotate	                    实现旋转效果
+  RippleDrawable	ripple	                    触摸反馈动画，Andorid 5.0推出
+  VectorDrawable	vector中使用path	            【绘制静态图】使用矢量图SVG, 能绘制一张图就能适配不同分辨率, Android 5.0推出
+  AnimatedVectorDrawable	animated-vector	    【动画矢量图】针对VectorDrawable来做动画， Android 5.0
+  AnimatedStateListDrawable	animated-selector	【动画型StateListDrawable】在View状态改变时，展示动画
+
+2、
