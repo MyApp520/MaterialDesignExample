@@ -1,4 +1,4 @@
-1、Drawable分类:
+1、Drawable分类: https://blog.csdn.net/feather_wch/article/details/79124608
   分类	            xml标签	                    功能
   ColorDrawable	    color	                    纯色Drawable
   RotateDrawable	rotate	                    实现旋转效果
