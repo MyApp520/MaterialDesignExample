@@ -6,13 +6,21 @@
 
     查看RecyclerView的源码发现，它会在构造方法中调用setFocusableInTouchMode(true),所以抢到焦点后一定会定位到第一行的位置突出RecyclerView的显示
 
-    解决方法就是NestScrollView节点添加
+    解决方法：就是NestScrollView节点添加
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="blocksDescendants"
+    或者
+        直接mRecyclerVIew.setFocusableInTouchMode(false)
 
-    android:focusableInTouchMode="true"
-    然后在NestScrollView的子节点view添加:
+    /************************************************************************/
+        beforeDescendants：viewgroup会优先其子类控件而获取到焦点
 
-    android:descendantFocusability="blocksDescendants"
-    或者 直接mRecyclerVIew.setFocusableInTouchMode(false)
+        afterDescendants：viewgroup只有当其子类控件不需要获取焦点时才获取焦点
+
+        blocksDescendants：viewgroup会覆盖子类控件而直接获得焦点
+
+        用法：这个属性直接丢给viewgroup
+    /************************************************************************/
 
 
 问题2、
