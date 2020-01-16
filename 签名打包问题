@@ -1,6 +1,6 @@
 1、Android Studio3.5 apk创建签名文件：
 
-  在Android Studio的Terminal下执行下面这句命令：
+  给哪个项目创建签名文件，就在这个项目的Android Studio的Terminal下执行下面这句命令：
 
     keytool -genkey -alias smilemde -keypass 666888 -keyalg RSA -keysize 2048 -validity 36500 -keystore D:\GitHub\MaterialDesignExample\smilemde.keystore -storepass 666888
 
