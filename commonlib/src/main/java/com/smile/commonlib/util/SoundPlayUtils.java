@@ -1,13 +1,14 @@
-package com.example.commonlib.util;
+package com.smile.commonlib.util;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-import com.example.commonlib.R;
+import com.smile.commonlib.R;
+
 
 /**
- * Created by smile on 2019/8/5.
+ * Created by xh_smile on 2019/8/5.
  */
 
 public class SoundPlayUtils {
@@ -15,10 +16,12 @@ public class SoundPlayUtils {
     private static SoundPool mSoundPlayer = new SoundPool(10, AudioManager.STREAM_MUSIC, 5);
 
     private static int currentPlayStreamId;
-    public static int TYPE_NORMAL_PASS;
-    public static int TYPE_KEY_PEOPLE;
-    public static int TYPE_UNKNOWN_PEOPLE;
-    public static int TYPE_BLE_CONNECT_SUCCESS;
+    public static int TYPE_NORMAL_PASS;//正常通过
+    public static int TYPE_KEY_PEOPLE;//重点人员，请注意盘查
+    public static int TYPE_UNKNOWN_PEOPLE;//系统认识，请进一步核查
+    public static int TYPE_BLE_CONNECT_SUCCESS;//蓝牙连接成功
+    public static int TYPE_BLE_CONNECT_FAIL;//蓝牙连接失败
+    public static int TYPE_BLE_DISCONNECT;//蓝牙已断开连接
 
     /**
      * 初始化
@@ -31,6 +34,8 @@ public class SoundPlayUtils {
         TYPE_KEY_PEOPLE = mSoundPlayer.load(context, R.raw.key_people, 1);
         TYPE_UNKNOWN_PEOPLE = mSoundPlayer.load(context, R.raw.unknown_people, 1);
         TYPE_BLE_CONNECT_SUCCESS = mSoundPlayer.load(context, R.raw.ble_connect_success, 1);
+        TYPE_BLE_CONNECT_FAIL = mSoundPlayer.load(context, R.raw.ble_connect_fail, 1);
+        TYPE_BLE_DISCONNECT = mSoundPlayer.load(context, R.raw.ble_disconnect, 1);
     }
 
     /**
