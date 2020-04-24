@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.commonlib.base.BaseActivity;
+import com.smile.commonlib.base.BaseActivity;
 
 import org.smile.mde.R;
 

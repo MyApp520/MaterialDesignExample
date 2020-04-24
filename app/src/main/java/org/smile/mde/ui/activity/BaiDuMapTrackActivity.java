@@ -40,7 +40,7 @@ import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.baidu.mapapi.utils.DistanceUtil;
-import com.example.commonlib.util.JsonUtil;
+import com.smile.commonlib.util.JsonUtil;
 
 import org.smile.mde.R;
 import org.smile.mde.bean.LocalBean;

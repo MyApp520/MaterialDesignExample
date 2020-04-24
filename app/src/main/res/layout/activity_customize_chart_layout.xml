@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.smile.mde.MainActivity">
+    tools:context="org.smile.mde.main.MainActivity">
 
     <org.smile.mde.view.MdeBarChartView
         android:id="@+id/mde_bar_chart_view"

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="common_white">#ffffff</color>
+    <color name="common_black">#333333</color>
+    <color name="backgroup">#4783E2</color>
+    <color name="divider">#EDEDED</color>
+    <color name="default_hint_color">#999999</color>
+    <color name="text_red">#ee1b24</color>
+    <color name="text_666">#666666</color>
+
+    <!-- FairySearchView -->
+    <color name="search_view_background">@color/backgroup</color>
+    <color name="edit_text">#212121</color>
+    <color name="edit_hint_text">#aaa</color>
+    <color name="btn_search_text_color">#fff</color>
+    <color name="edit_background">#fff</color>
+    <color name="edit_stroke">#fff</color>
+</resources>

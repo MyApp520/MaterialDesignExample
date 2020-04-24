@@ -17,8 +17,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.example.commonlib.util.ShowToast;
-import com.example.commonlib.util.UIUtils;
+import com.smile.commonlib.util.ShowToast;
+import com.smile.commonlib.util.UIUtils;
 
 import org.smile.mde.R;
 

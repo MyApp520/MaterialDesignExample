@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.example.commonlib.base.BaseActivity;
-import com.example.commonlib.util.StatusbarUtils;
+import com.smile.commonlib.base.BaseActivity;
+import com.smile.commonlib.util.StatusbarUtils;
 import com.github.mikephil.charting.utils.Utils;
 
 import org.smile.mde.R;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/search_view_background"
+    android:paddingBottom="10dp"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingTop="10dp"
+    android:text="标签"
+    android:textColor="@color/text_666"
+    android:textSize="14sp">
+
+</TextView>

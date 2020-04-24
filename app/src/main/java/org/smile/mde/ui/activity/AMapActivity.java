@@ -31,9 +31,9 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
-import com.example.commonlib.util.MyLog;
-import com.example.commonlib.util.TimeUitls;
-import com.example.commonlib.util.UIUtils;
+import com.smile.commonlib.util.MyLog;
+import com.smile.commonlib.util.TimeUitls;
+import com.smile.commonlib.util.UIUtils;
 
 import org.smile.mde.R;
 

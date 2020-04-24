@@ -1,7 +1,7 @@
 package org.smile.mde.dagger.component;
 
-import com.example.commonlib.dagger.component.BaseComponent;
-import com.example.commonlib.dagger.scope.AppScope;
+import com.smile.commonlib.dagger.component.BaseComponent;
+import com.smile.commonlib.dagger.scope.AppScope;
 
 import org.smile.mde.MyApplication;
 import org.smile.mde.module.AppActivityModule;

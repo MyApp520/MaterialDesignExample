@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">searchFunctionLib</string>
+
+    <!-- FairySearchView -->
+    <string name="edit_hint">请输入查询关键词</string>
+    <string name="btn_search_Text_hint">搜索</string>
+    <string name="search_history">搜索历史</string>
+    <string name="empty_search_content">请输入搜索内容</string>
+
+    <!-- TagFlowLayout -->
+    <string name="gravity_left">left</string>
+    <string name="gravity_center">center</string>
+    <string name="gravity_right">right</string>
+</resources>

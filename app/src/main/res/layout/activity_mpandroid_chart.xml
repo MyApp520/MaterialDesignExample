@@ -118,7 +118,7 @@
 
             </TextView>
 
-            <com.example.commonlib.view.CommonHorizontalScrollView
+            <com.smile.commonlib.view.CommonHorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_alarm_statistics_date"
@@ -170,7 +170,7 @@
 
                 </LinearLayout>
 
-            </com.example.commonlib.view.CommonHorizontalScrollView>
+            </com.smile.commonlib.view.CommonHorizontalScrollView>
         </RelativeLayout>
 
         <RelativeLayout
@@ -236,13 +236,13 @@
             android:layout_margin="@dimen/activity_vertical_margin"
             android:background="@drawable/common_white_corner_shape">
 
-            <com.example.commonlib.mpandroidchart.view.FixPieChart
+            <com.smile.commonlib.mpandroidchart.view.FixPieChart
                 android:id="@+id/fix_pie_chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true">
 
-            </com.example.commonlib.mpandroidchart.view.FixPieChart>
+            </com.smile.commonlib.mpandroidchart.view.FixPieChart>
         </RelativeLayout>
     </LinearLayout>
 

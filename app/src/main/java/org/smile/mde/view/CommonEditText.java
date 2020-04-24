@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.example.commonlib.util.ShowToast;
-import com.example.commonlib.util.UIUtils;
+import com.smile.commonlib.util.ShowToast;
+import com.smile.commonlib.util.UIUtils;
 
 import org.smile.mde.R;
 

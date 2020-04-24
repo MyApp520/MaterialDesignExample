@@ -19,8 +19,8 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.example.commonlib.base.BaseActivity;
-import com.example.commonlib.util.MyLog;
+import com.smile.commonlib.base.BaseActivity;
+import com.smile.commonlib.util.MyLog;
 
 import org.smile.mde.R;
 

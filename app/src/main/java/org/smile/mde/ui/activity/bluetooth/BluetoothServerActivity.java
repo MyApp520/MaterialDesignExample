@@ -18,7 +18,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.commonlib.base.BaseActivity;
+import com.smile.commonlib.base.BaseActivity;
 
 import org.smile.mde.R;
 

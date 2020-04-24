@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.example.commonlib.util.UIUtils;
+import com.smile.commonlib.util.UIUtils;
 
 /**
  * Created by smile on 2019/6/5.

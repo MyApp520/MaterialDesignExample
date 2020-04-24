@@ -24,3 +24,19 @@
 
 
 问题2、
+    parentView.addView(childView)的时候：添加的childView不显示内容。
+
+    解决方法：
+            1、如果还是不行，检查new childView的时候是否完成了初始化；
+
+            2、调用addView带三个参数的方法：addView(childView, parentView.getChildCount(), layoutParams);
+                备注：目的是显示的在addView(childView)的时候，通过layoutParams给childView设置宽高属性；
+
+            3、如果使用了inflate方法创建childView：
+                1）LayoutInflater.from(mContext).inflate(int resource, ViewGroup root, boolean attachToRoot)
+                    备注：第三个参数attachToRoot：尝试设为true，默认是false；
+
+                2）View.inflate(Context context, int resource, ViewGroup root)
+                    备注：该方法本质也是去调用LayoutInflater.from(mContext).inflate()，第三个参数attachToRoot默认是true；
+
+            4、如果1、2、3步骤都解决不了，调用childView的onMeasure方法测量一下childView的宽高，再重新设置给childView；

@@ -156,4 +156,17 @@ dependencies {
     }
 
     api rootProject.ext.dependencies['rxerrorhandler2']
+
+    //基础的 OkSocket 功能集成包.您的Socket开发无论是客户端还是Java,都需要此包 (必须集成)
+    api 'com.tonystark.android:socket:4.2.2'
+    //如果您需要使用 OkSocketServer 功能在客户端或者Java程序,您还需要依赖下面的Server插件包和上面的一起依赖.
+    api 'com.tonystark.android:socket-server:4.2.2'
+
+    // netty框架
+    api 'io.netty:netty-all:4.1.36.Final'
+
+    // grpc框架
+    api 'io.grpc:grpc-okhttp:1.29.0'
+    api 'io.grpc:grpc-protobuf-lite:1.29.0'
+    api 'io.grpc:grpc-stub:1.29.0'
 }

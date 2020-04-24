@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FairySearchView">
+        <attr name="searchViewHeight" format="dimension|reference" />
+        <attr name="searchViewBackground" format="color|reference" />
+        <attr name="showBackButton" format="boolean" />
+        <attr name="backIcon" format="reference" />
+        <attr name="showEditTextLeftSearchIcon" format="boolean" />
+        <attr name="searchIcon" format="reference" />
+        <attr name="showClearButton" format="boolean" />
+        <attr name="isAllowShowSearchHistory" format="boolean" />
+        <attr name="clearIcon" format="reference" />
+        <attr name="showCancelButton" format="boolean" />
+        <attr name="btnSearchHint" format="string|reference" />
+        <attr name="btnSearchSize" format="dimension|reference" />
+        <attr name="btnSearchColor" format="color|reference" />
+        <attr name="searchText" format="string|reference" />
+        <attr name="searchTextSize" format="dimension|reference" />
+        <attr name="searchTextColor" format="color|reference" />
+        <attr name="searchHint" format="string|reference" />
+        <attr name="searchHintColor" format="color|reference" />
+        <attr name="maxSearchLength" format="integer" />
+        <attr name="deleteHistoryRecordType" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="max_select" format="integer" />
+        <attr name="is_must_select_one" format="boolean" />
+        <attr name="tag_gravity">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="DrawerItemView">
+        <attr name="max_select_tab_count" format="integer" />
+        <attr name="is_must_select_one_tab" format="boolean" />
+        <attr name="item_view_title_text" format="string|reference" />
+    </declare-styleable>
+
+</resources>

@@ -35,9 +35,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.example.commonlib.base.BaseActivity;
-import com.example.commonlib.util.Bluetooth.MdeBluetoothUtil;
-import com.example.commonlib.util.ShowToast;
+import com.smile.commonlib.base.BaseActivity;
+import com.smile.commonlib.util.Bluetooth.MdeBluetoothUtil;
+import com.smile.commonlib.util.ShowToast;
 
 import org.smile.mde.R;
 

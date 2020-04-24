@@ -20,8 +20,8 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.example.commonlib.util.ShowToast;
-import com.example.commonlib.util.TimeUitls;
+import com.smile.commonlib.util.ShowToast;
+import com.smile.commonlib.util.TimeUitls;
 
 import org.smile.mde.R;
 
@@ -63,10 +63,10 @@ public class PickerViewTimeUtil {
                 })
                 .setContentTextSize(18)
                 .setLineSpacingMultiplier(1.8f)
-                .setTitleBgColor(ContextCompat.getColor(activity.getApplicationContext(), com.example.commonlib.R.color.white))
-                .setTitleColor(ContextCompat.getColor(activity.getApplicationContext(), com.example.commonlib.R.color.backgroup))
-                .setSubmitColor(ContextCompat.getColor(activity.getApplicationContext(), com.example.commonlib.R.color.backgroup))
-                .setCancelColor(ContextCompat.getColor(activity.getApplicationContext(), com.example.commonlib.R.color.default_hint_color))
+                .setTitleBgColor(ContextCompat.getColor(activity.getApplicationContext(), com.smile.commonlib.R.color.white))
+                .setTitleColor(ContextCompat.getColor(activity.getApplicationContext(), com.smile.commonlib.R.color.backgroup))
+                .setSubmitColor(ContextCompat.getColor(activity.getApplicationContext(), com.smile.commonlib.R.color.backgroup))
+                .setCancelColor(ContextCompat.getColor(activity.getApplicationContext(), com.smile.commonlib.R.color.default_hint_color))
                 .build();
 
         Dialog mDialog = pvTime.getDialog();

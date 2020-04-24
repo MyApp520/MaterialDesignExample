@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_view_height"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/search_view_padding_start"
+        android:paddingTop="@dimen/search_view_padding_top"
+        android:paddingEnd="@dimen/search_view_padding_right"
+        android:paddingBottom="@dimen/search_view_padding_bottom">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/btn_back_margin_right"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_back" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/btn_search"
+            android:layout_toEndOf="@+id/btn_back"
+            android:background="@drawable/search_view_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edit_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:drawableStart="@drawable/ic_search_gray"
+                android:gravity="center_vertical"
+                android:hint="@string/edit_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/edit_text"
+                android:textColorHint="@color/edit_hint_text"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                android:textSize="@dimen/edit_text_size" />
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_clear"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/btn_clear_margin_left"
+            android:background="@color/transparent"
+            android:minWidth="30dp"
+            android:minHeight="30dp"
+            android:text="@string/btn_search_Text_hint"
+            android:textAllCaps="false"
+            android:textColor="@color/btn_search_text_color"
+            android:textSize="@dimen/btn_search_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_search_history_cview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_search_view"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/half_activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/half_activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/tv_search_history_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="@string/search_history"
+            android:textColor="@color/common_black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_delete_history"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:minWidth="2dp"
+            android:minHeight="2dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="清除记录"
+            android:textColor="@color/backgroup" />
+
+        <ImageView
+            android:id="@+id/image_delete_history"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:minWidth="2dp"
+            android:minHeight="2dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_delete_all"
+            android:visibility="gone" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/search_history_tag_flow_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_search_history_hint"
+            zhy:is_must_select_one="true"
+            zhy:max_select="1">
+
+        </com.zhy.view.flowlayout.TagFlowLayout>
+    </RelativeLayout>
+</RelativeLayout>

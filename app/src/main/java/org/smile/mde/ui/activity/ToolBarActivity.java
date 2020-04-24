@@ -6,8 +6,8 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import com.example.commonlib.base.BaseActivity;
-import com.example.commonlib.util.ShowToast;
+import com.smile.commonlib.base.BaseActivity;
+import com.smile.commonlib.util.ShowToast;
 
 import org.smile.mde.R;
 

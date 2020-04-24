@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.commonlib.base.BaseActivity;
-import com.example.commonlib.util.ShowToast;
-import com.example.commonlib.util.SoundPlayUtils;
+import com.smile.commonlib.base.BaseActivity;
+import com.smile.commonlib.util.ShowToast;
+import com.smile.commonlib.util.SoundPlayUtils;
 
 import org.smile.mde.R;
 

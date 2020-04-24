@@ -1,14 +1,15 @@
 ext {
     android = [
-            compileSdkversions: 28,
-            buildToolsversions: "28.0.3",
+            compileSdkversions: 29,
+            buildToolsversions: "29.0.2",
             minSdkversions    : 19,
-            targetSdkversions : 28,
+            targetSdkversions : 29,
             versionsCode      : 1,
             versionsName      : "v1.00.03.190904"
     ]
 
     versions = [
+            androidxVersions      : "1.0.0",
             retrofitSdkversions      : "2.6.0",
             dagger2Sdkversions       : "2.17",
             glideSdkversions         : "4.9.0",
@@ -22,12 +23,12 @@ ext {
 
     dependencies = [
             //support
-            "appcompat-v7"                 : 'androidx.appcompat:appcompat:1.0.0',
-            "design"                       : 'com.google.android.material:material:1.0.0',
-            "support-v4"                   : 'androidx.legacy:legacy-support-v4:1.0.0',
-            "annotations"                  : 'androidx.annotation:annotation:1.0.0',
-            "recyclerview-v7"              : 'androidx.recyclerview:recyclerview:1.0.0',
-            "cardview-v7"                  : 'androidx.cardview:cardview:1.0.0',
+            "appcompat-v7"                 : "androidx.appcompat:appcompat:${versions["androidxVersions"]}",
+            "design"                       : "com.google.android.material:material:${versions["androidxVersions"]}",
+            "support-v4"                   : "androidx.legacy:legacy-support-v4:${versions["androidxVersions"]}",
+            "annotations"                  : "androidx.annotation:annotation:${versions["androidxVersions"]}",
+            "recyclerview-v7"              : "androidx.recyclerview:recyclerview:${versions["androidxVersions"]}",
+            "cardview-v7"                  : "androidx.cardview:cardview:${versions["androidxVersions"]}",
 
             //fragmentation框架
             "fragmentation"                : "me.yokeyword:fragmentation:1.3.7",

@@ -75,6 +75,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation project(':commonlib')
+    implementation project(':searchfunctionlib')
 
     // 引入butterknife
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {

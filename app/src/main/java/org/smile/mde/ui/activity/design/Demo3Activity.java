@@ -7,10 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.commonlib.adapter.CommonViewPagerAdapter;
-import com.example.commonlib.base.BaseActivity;
-import com.example.commonlib.util.ShowToast;
-import com.example.commonlib.view.NoScrollViewPager;
+import com.smile.commonlib.adapter.CommonViewPagerAdapter;
+import com.smile.commonlib.base.BaseActivity;
+import com.smile.commonlib.util.ShowToast;
+import com.smile.commonlib.view.NoScrollViewPager;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;

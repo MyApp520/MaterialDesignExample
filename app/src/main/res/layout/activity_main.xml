@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#f2f2f2"
-    tools:context="org.smile.mde.MainActivity">
+    tools:context="org.smile.mde.main.MainActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -97,6 +98,11 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="180dp"
+                android:layout_height="180dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

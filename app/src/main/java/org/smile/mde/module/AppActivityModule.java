@@ -1,8 +1,8 @@
 package org.smile.mde.module;
 
-import com.example.commonlib.dagger.scope.ActivityScope;
+import com.smile.commonlib.dagger.scope.ActivityScope;
 
-import org.smile.mde.MainActivity;
+import org.smile.mde.main.MainActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
