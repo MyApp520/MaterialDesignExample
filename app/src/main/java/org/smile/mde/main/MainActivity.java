@@ -28,7 +28,7 @@ import org.smile.mde.baidumap.location.BDLocationService;
 import org.smile.mde.bean.LocationResponse;
 import org.smile.mde.bean.LoginRespose;
 import org.smile.mde.constant.AppConstant;
-import org.smile.mde.oksocket.OkSocketHelper;
+import org.smile.mde.ui.activity.BaiDuMapTrackActivity;
 import org.smile.mde.ui.activity.ConstraintLayoutActivity;
 import org.smile.mde.ui.activity.TestCropperActivity;
 import org.smile.mde.ui.activity.ToolBarActivity;
@@ -116,14 +116,14 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
     }
 
     @OnClick({R.id.btn_face_rect, R.id.btn_two_recycler_view, R.id.btn_toolbar, R.id.btn_CoordinatorLayout, R.id.btn_ConstraintLayout,
-            R.id.btn_mpandroidchart, R.id.btn_customize_view, R.id.btn_audio_video, R.id.btn_bluetooth})
+            R.id.btn_mpandroidchart, R.id.btn_customize_view, R.id.btn_audio_video, R.id.btn_bluetooth, R.id.btn_cropper})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_face_rect:
 //                startActivity(new Intent(this, FaceRectActivity.class));
 //                startActivity(new Intent(this, AMapActivity.class));//高德地图
-//                startActivity(new Intent(this, BaiDuMapTrackActivity.class));//百度地图绘制运动轨迹
-                OkSocketHelper.getInstance().connectSocket();
+                startActivity(new Intent(this, BaiDuMapTrackActivity.class));//百度地图绘制运动轨迹
+//                OkSocketHelper.getInstance().connectSocket();
                 break;
             case R.id.btn_two_recycler_view:
                 startActivity(new Intent(this, TwoRecyclerViewActivity.class));

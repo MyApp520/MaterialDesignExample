@@ -72,16 +72,8 @@ dependencies {
     api 'com.github.bumptech.glide:glide:3.7.0'
 
     //引入fragmentation框架
-    api(rootProject.ext.dependencies["fragmentation"]) {
-        exclude group: 'support-annotations'
-        exclude group: 'support-v7'
-        exclude group: 'support-v4'
-    }
-    api(rootProject.ext.dependencies["fragmentation-core"]) {
-        exclude group: 'support-annotations'
-        exclude group: 'support-v7'
-        exclude group: 'support-v4'
-    }
+    api 'me.yokeyword:fragmentationx:1.0.2'
+    api 'me.yokeyword:fragmentationx-swipeback:1.0.2'
 
     api(rootProject.ext.dependencies["okhttp3"]) {
         exclude group: 'support-annotations'
