@@ -9,7 +9,7 @@ ext {
     ]
 
     versions = [
-            androidxVersions      : "1.0.0",
+            androidxVersions      : "1.1.0",
             retrofitSdkversions      : "2.6.0",
             dagger2Sdkversions       : "2.17",
             glideSdkversions         : "4.9.0",
@@ -25,10 +25,10 @@ ext {
             //support
             "appcompat-v7"                 : "androidx.appcompat:appcompat:${versions["androidxVersions"]}",
             "design"                       : "com.google.android.material:material:${versions["androidxVersions"]}",
-            "support-v4"                   : "androidx.legacy:legacy-support-v4:${versions["androidxVersions"]}",
+            "support-v4"                   : "androidx.legacy:legacy-support-v4:1.0.0",
             "annotations"                  : "androidx.annotation:annotation:${versions["androidxVersions"]}",
             "recyclerview-v7"              : "androidx.recyclerview:recyclerview:${versions["androidxVersions"]}",
-            "cardview-v7"                  : "androidx.cardview:cardview:${versions["androidxVersions"]}",
+            "cardview-v7"                  : "androidx.cardview:cardview:1.0.0",
 
             //fragmentation框架
             "fragmentation"                : "me.yokeyword:fragmentation:1.3.7",
