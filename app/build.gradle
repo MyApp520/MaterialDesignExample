@@ -76,6 +76,7 @@ dependencies {
 
     implementation project(':commonlib')
     implementation project(':searchfunctionlib')
+    implementation project(':cropperLibrary')
 
     // 引入butterknife
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {

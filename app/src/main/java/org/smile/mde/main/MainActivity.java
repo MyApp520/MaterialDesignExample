@@ -30,6 +30,7 @@ import org.smile.mde.bean.LoginRespose;
 import org.smile.mde.constant.AppConstant;
 import org.smile.mde.oksocket.OkSocketHelper;
 import org.smile.mde.ui.activity.ConstraintLayoutActivity;
+import org.smile.mde.ui.activity.TestCropperActivity;
 import org.smile.mde.ui.activity.ToolBarActivity;
 import org.smile.mde.ui.activity.TwoRecyclerViewActivity;
 import org.smile.mde.ui.activity.audio_video.PlayVoiceActivity;
@@ -148,6 +149,9 @@ public class MainActivity extends BaseActivity implements SecondPTZCircleControl
                 break;
             case R.id.btn_bluetooth:
                 startActivity(new Intent(this, BluetoothActivity.class));
+                break;
+            case R.id.btn_cropper:
+                startActivity(new Intent(this, TestCropperActivity.class));
                 break;
             default:
                 break;

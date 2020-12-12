@@ -1,1 +1,1 @@
-include ':app', ':commonlib', ':searchfunctionlib'
+include ':app', ':commonlib', ':searchfunctionlib' , ':cropperLibrary'
