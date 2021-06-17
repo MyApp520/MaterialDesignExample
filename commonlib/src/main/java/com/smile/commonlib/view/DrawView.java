@@ -121,6 +121,7 @@ public class DrawView extends View {
 
         // 背景画笔
         mViewPaint = new Paint();
+        mViewPaint.setAntiAlias(true);//设置无锯齿
         mViewPaint.setColor(getResources().getColor(R.color.bg_shadow));
         // 通过mTempCanvas给mBitmap画个边框，这个边框的宽高就是整个mBitmap的宽高
         mTempCanvas.drawRect(0, 0, mTempCanvas.getWidth(), mTempCanvas.getHeight(), mViewPaint);
